@@ -1,0 +1,11 @@
+{
+  "name": "@sensitive-dogs/pages",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28"
+  }
+}
