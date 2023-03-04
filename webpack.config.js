@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/core-packages/app/index.tsx",
+  entry: path.resolve(__dirname, "./src/core-packages/app/index.tsx"),
   mode: "development",
   module: {
     rules: [
@@ -30,7 +30,7 @@ module.exports = {
   resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
+    publicPath: "/",
     filename: "bundle.js"
   }
 };

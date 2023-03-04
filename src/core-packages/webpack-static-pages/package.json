@@ -1,8 +1,9 @@
 {
   "name": "@sensitive-dogs/webpack-static-pages",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "devDependencies": {
-    "html-webpack-plugin": "^5.5.0"
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.20.0"
   }
 }
