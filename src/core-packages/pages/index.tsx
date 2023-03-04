@@ -1,12 +1,14 @@
 import React from "react";
 
+import HomePage from "@sensitive-dogs/home-page";
+
 type pageComponent = {
   [key: string]: React.FC;
 };
 
 const pages: pageComponent = {
   index() {
-    return <div>Hello App and the World of Web</div>;
+    return <HomePage />;
   },
   about() {
     return <div>It's all about sensitive dogs</div>;

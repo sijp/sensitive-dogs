@@ -1,0 +1,12 @@
+{
+  "name": "@sensitive-dogs/home-page",
+  "version": "1.0.0",
+  "main": "index.tsx",
+  "license": "GPLv3",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.11"
+  }
+}
