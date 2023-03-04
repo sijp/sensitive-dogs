@@ -15,16 +15,13 @@ const compiler = Webpack({
   plugins
 });
 
-const devServerOptions = {
+const devServerOptions: WebpackDevServer.Configuration = {
   static: false,
   port: 3000,
   devMiddleware: {
-    publicPath: "http://localhost:3000/"
+    publicPath: "/"
   },
-  hot: true,
-  proxy: {
-    "*": "http://localhost:3000/index.html"
-  }
+  hot: true
 };
 
 const server = new WebpackDevServer(devServerOptions, compiler);

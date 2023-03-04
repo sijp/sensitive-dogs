@@ -18,7 +18,7 @@ function getPages(
           title: `Hello ${page}`
         },
         favicon: path.resolve(__dirname, "./public/favicon.ico"),
-        filename: `${page.toLowerCase()}.html`,
+        filename: `${page === "index" ? "." : page.toLowerCase()}/index.html`,
         template: path.resolve(__dirname, "./public/template.html")
       })
   );

@@ -5,8 +5,11 @@ type pageComponent = {
 };
 
 const pages: pageComponent = {
-  Index() {
+  index() {
     return <div>Hello App and the World of Web</div>;
+  },
+  about() {
+    return <div>It's all about sensitive dogs</div>;
   }
 };
 
