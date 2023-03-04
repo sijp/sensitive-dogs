@@ -8,9 +8,15 @@
   "license": "GPLv3",
   "private": true,
   "scripts": {
-    "dev": "yarn --cwd src/core-packages/dev-server start"
+    "dev": "yarn --cwd src/core-packages/dev-server start",
+    "build": "yarn --cwd src/core-packages/builder start",
+    "clean-dist": "rm -rf dist",
+    "prod": "yarn clean-dist && yarn build && yarn serve dist"
   },
   "workspaces": [
     "src/**/*"
-  ]
+  ],
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
 }

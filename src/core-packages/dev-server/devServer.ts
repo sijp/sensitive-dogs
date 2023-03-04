@@ -3,25 +3,27 @@ import WebpackDevServer from "webpack-dev-server";
 
 import webpackConfig from "../../../webpack.config";
 
-import { getPages } from "@sensitive-dogs/webpack-static-pages";
-import render from "../app/render";
+import webpackStaticPages from "@sensitive-dogs/webpack-static-pages";
+import render from "@sensitive-dogs/app/render";
+import pages from "@sensitive-dogs/pages";
+
+const plugins = webpackStaticPages(render)(Object.keys(pages));
 
 const compiler = Webpack({
   ...webpackConfig,
-  entry: `../../../${webpackConfig.entry}`,
   mode: "development",
-  plugins: [...getPages(["Index"], () => render("Index"))]
+  plugins
 });
 
 const devServerOptions = {
   static: false,
   port: 3000,
   devMiddleware: {
-    publicPath: "http://localhost:3000/dist/"
+    publicPath: "http://localhost:3000/"
   },
   hot: true,
   proxy: {
-    "*": "http://localhost:3000/dist/index.html"
+    "*": "http://localhost:3000/index.html"
   }
 };
 
