@@ -8,7 +8,7 @@
   "license": "GPLv3",
   "private": true,
   "scripts": {
-    "dev": "yarn --cwd src/infrastructure-packages/dev-server start"
+    "dev": "yarn --cwd src/core-packages/dev-server start"
   },
   "workspaces": [
     "src/**/*"

@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/packages/pages/index.tsx",
+  entry: "./src/core-packages/app/index.tsx",
   mode: "development",
   module: {
     rules: [
@@ -9,7 +9,13 @@ module.exports = {
         test: /\.(js|ts)x?$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/env", "@babel/preset-react"] }
+        options: {
+          presets: [
+            "@babel/env",
+            ["@babel/preset-react", { runtime: "automatic" }],
+            "@babel/preset-typescript"
+          ]
+        }
       },
       {
         test: /\.css$/,

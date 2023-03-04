@@ -4,12 +4,13 @@ import WebpackDevServer from "webpack-dev-server";
 import webpackConfig from "../../../webpack.config";
 
 import { getPages } from "@sensitive-dogs/webpack-static-pages";
+import render from "../app/render";
 
 const compiler = Webpack({
   ...webpackConfig,
   entry: `../../../${webpackConfig.entry}`,
   mode: "development",
-  plugins: [...getPages(["index"], () => "Hello World")]
+  plugins: [...getPages(["Index"], () => render("Index"))]
 });
 
 const devServerOptions = {

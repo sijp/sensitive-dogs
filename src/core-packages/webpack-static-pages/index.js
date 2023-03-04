@@ -8,9 +8,10 @@ export function getPages(pageNames, render) {
     (page) =>
       new HtmlWebpackPlugin({
         templateParameters: {
-          content: render(page)
+          content: render(page),
+          title: `Hello ${page}`
         },
-        filename: `${page}.html`,
+        filename: `${page.toLowerCase()}.html`,
         template: "public/template.html"
       })
   );
