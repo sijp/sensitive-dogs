@@ -6,10 +6,5 @@ interface AppProps {
 }
 
 export default function App({ route }: AppProps) {
-  const [path, setPath] = React.useState(route);
-
-  React.useEffect(() => {
-    setPath((/#!(\/.*)$/.exec(window?.location?.hash) || [])[1]);
-  }, []);
-  return <Router route={route || path} />;
+  return <Router route={route} />;
 }
