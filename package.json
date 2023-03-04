@@ -1,0 +1,16 @@
+{
+  "name": "sensitive-dogs",
+  "version": "1.0.0",
+  "description": "Sensitive dogs community index",
+  "main": "index.ts",
+  "repository": "https://github.com/sijp/sensitive-dogs.git",
+  "author": "Shlomi Israely <sijproject@gmail.com>",
+  "license": "GPLv3",
+  "private": true,
+  "scripts": {
+    "dev": "yarn --cwd src/core-packages/dev-server start"
+  },
+  "workspaces": [
+    "src/**/*"
+  ]
+}
