@@ -3,7 +3,7 @@ import webpackConfig from "../../../webpack.config";
 
 import webpackStaticPages from "@sensitive-dogs/webpack-static-pages";
 import render from "@sensitive-dogs/app/render";
-import pages from "src/core-packages/pages";
+import pages from "@sensitive-dogs/pages";
 
 const plugins = webpackStaticPages(render)(Object.keys(pages));
 
