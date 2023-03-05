@@ -6,11 +6,17 @@
   "repository": "https://github.com/sijp/sensitive-dogs.git",
   "author": "Shlomi Israely <sijproject@gmail.com>",
   "license": "GPLv3",
+  "engines": {
+    "node": "^18.12"
+  },
   "private": true,
   "scripts": {
-    "dev": "yarn --cwd src/core-packages/dev-server start",
-    "build": "yarn --cwd src/core-packages/builder start",
+    "babel-run": "node src/core-packages/babel-run/index.js",
+    "dev": "yarn babel-run dev-server",
+    "build": "yarn babel-run builder",
     "clean-dist": "rm -rf dist",
+    "clean-data": "rm -rf data",
+    "sync": "yarn clean-data && yarn babel-run google-drive",
     "prod": "yarn clean-dist && yarn build && yarn serve dist"
   },
   "workspaces": [

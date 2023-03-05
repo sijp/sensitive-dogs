@@ -15,4 +15,10 @@ require("@babel/register")({
   plugins: ["@babel/plugin-transform-runtime"]
 });
 
-require("./builder");
+const packageName = process.argv[2];
+
+if (packageName) {
+  require(`../${packageName}/index.ts`);
+} else {
+  console.error("Missing packageName to run");
+}
