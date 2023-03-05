@@ -2,11 +2,11 @@ import React from "react";
 
 import HomePage from "@sensitive-dogs/home-page";
 
-type pageComponent = {
+type pagesComponent = {
   [key: string]: React.FC;
 };
 
-const pages: pageComponent = {
+const pages: pagesComponent = {
   index() {
     return <HomePage />;
   },
