@@ -1,8 +1,9 @@
 {
-  "name": "@sensitive-dogs/builder",
+  "name": "@sensitive-dogs/bundler",
   "version": "1.0.0",
   "main": "index.ts",
   "license": "GPLv3",
+  "private": true,
   "dependencies": {
     "@babel/core": "^7.21.0",
     "@babel/plugin-transform-runtime": "^7.21.0",
@@ -16,9 +17,9 @@
     "webpack": "^5.75.0",
     "webpack-dev-server": "^4.11.1"
   },
-  "private": true,
   "devDependencies": {
     "@types/terser-webpack-plugin": "^5.2.0",
-    "terser-webpack-plugin": "^5.3.6"
+    "terser-webpack-plugin": "^5.3.6",
+    "html-webpack-plugin": "^5.5.0"
   }
 }

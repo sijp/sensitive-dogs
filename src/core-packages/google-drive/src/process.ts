@@ -128,22 +128,24 @@ export default async function process() {
   );
 
   console.log("\tGetting embedded images:");
-  const embeddedImageStreams = articleFiles.flatMap(({ embeddedImages }) => {
-    embeddedImages.map((image) =>
-      image.uri !== null && image.uri !== undefined
-        ? download(
-            {
-              id: image.id,
-              name: image.id,
-              uri: image.uri,
-              description: "",
-              mimeType: MIMETYPES.IMAGE
-            },
-            `\t\tDownloading Embedded Image ${image.id}`
-          )
-        : null
-    );
-  });
+  const embeddedImageStreams = await Promise.all(
+    articleFiles.flatMap(({ embeddedImages }) =>
+      embeddedImages.map((image) =>
+        image.uri !== null && image.uri !== undefined
+          ? download(
+              {
+                id: image.id,
+                name: image.id,
+                uri: image.uri,
+                description: "",
+                mimeType: MIMETYPES.IMAGE
+              },
+              `\t\tDownloading Embedded Image ${image.id}`
+            )
+          : null
+      )
+    )
+  );
 
   const schemas = await getDB("Getting Database");
   const database = await Promise.all(
@@ -160,7 +162,8 @@ export default async function process() {
   );
 
   return {
-    getImageStreams: () => [...imageStreams, ...embeddedImageStreams],
+    getImageStreams: () =>
+      lodash.compact([...imageStreams, ...embeddedImageStreams]),
     processArticles: processArticles(articleFiles),
     processDataBase: processDataBase(database),
     processMenu: processMenu(articlesInfo)
