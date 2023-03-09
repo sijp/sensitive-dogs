@@ -134,8 +134,8 @@ async function cacheStream(
     await mkdir(folder, { recursive: true });
   }
 
-  writeFileFromStream(fileName, stream);
-  return stream;
+  await writeFileFromStream(fileName, stream);
+  return readFileToStream(fileName) as Promise<Readable>;
 }
 
 export default function GoogleAdapter() {

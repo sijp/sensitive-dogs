@@ -12,11 +12,10 @@
   "private": true,
   "scripts": {
     "babel-run": "node src/core-packages/babel-run/index.js",
-    "dev": "yarn babel-run dev-server",
-    "build": "yarn babel-run builder",
+    "dev": "yarn babel-run bundler dev",
+    "build": "yarn babel-run bundler prod",
     "clean-dist": "rm -rf dist",
     "clean-data": "rm -rf data",
-    "sync": "yarn clean-data && yarn babel-run google-drive",
     "prod": "yarn clean-dist && yarn build && yarn serve dist"
   },
   "workspaces": [
