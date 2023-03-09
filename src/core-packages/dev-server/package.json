@@ -1,10 +1,7 @@
 {
   "name": "@sensitive-dogs/dev-server",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
+  "main": "index.ts",
   "license": "GPLv3",
   "dependencies": {
     "@babel/core": "^7.21.0",

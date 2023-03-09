@@ -1,7 +1,10 @@
 {
-  "name": "@sensitive-dogs/builder",
+  "name": "@sensitive-dogs/babel-run",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "license": "GPLv3",
   "dependencies": {
     "@babel/core": "^7.21.0",
@@ -12,13 +15,6 @@
     "@babel/register": "^7.21.0",
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
-    "ignore-styles": "^5.0.1",
-    "webpack": "^5.75.0",
-    "webpack-dev-server": "^4.11.1"
-  },
-  "private": true,
-  "devDependencies": {
-    "@types/terser-webpack-plugin": "^5.2.0",
-    "terser-webpack-plugin": "^5.3.6"
+    "ignore-styles": "^5.0.1"
   }
 }
