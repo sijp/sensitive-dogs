@@ -1,5 +1,5 @@
-import { mkdir, writeFile } from "fs/promises";
-import { createWriteStream } from "fs";
+import { mkdir } from "fs/promises";
+import { createWriteStream, createReadStream } from "fs";
 import path from "path";
 
 import { Readable } from "stream";
@@ -9,7 +9,11 @@ export async function createDataFolder() {
   await mkdir("./data/articles", { recursive: true });
 }
 
-export async function writeFileFromStream(stream: Readable, target: string) {
+export async function readFileToStream(src: string) {
+  return createReadStream(src);
+}
+
+export async function writeFileFromStream(target: string, stream: Readable) {
   const dest = createWriteStream(target);
 
   return new Promise((res, rej) => {

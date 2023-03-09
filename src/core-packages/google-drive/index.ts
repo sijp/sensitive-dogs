@@ -1,5 +1,8 @@
 import dotenv from "dotenv";
-import sync from "./sync";
+import process from "./src/process";
 
 dotenv.config();
-sync();
+
+export default process;
+
+export type { ArticleContent, SchemaContent } from "./src/google-adapter";

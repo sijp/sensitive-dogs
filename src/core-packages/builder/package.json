@@ -16,5 +16,9 @@
     "webpack": "^5.75.0",
     "webpack-dev-server": "^4.11.1"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@types/terser-webpack-plugin": "^5.2.0",
+    "terser-webpack-plugin": "^5.3.6"
+  }
 }
