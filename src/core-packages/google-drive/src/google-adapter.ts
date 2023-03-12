@@ -258,7 +258,7 @@ export default function GoogleAdapter() {
                 ).data,
           msg
         );
-        return { id: src.id, stream: result };
+        return { id: src.name, stream: result };
       case MIMETYPES.SCHEMA:
         result = await cache(
           `downloads/database/${src.id}`,

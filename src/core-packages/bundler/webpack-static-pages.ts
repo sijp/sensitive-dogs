@@ -13,6 +13,15 @@ function getPages(
   return pageNames.map(
     (page) =>
       new HtmlWebpackPlugin({
+        minify: {
+          collapseWhitespace: true,
+          keepClosingSlash: true,
+          removeComments: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          useShortDoctype: true
+        },
         templateParameters: {
           content: render(page),
           title: `Hello ${page}`
