@@ -11,7 +11,6 @@ function readStream(stream: Readable) {
   return new Promise<Buffer>((res, rej) => {
     stream
       .on("error", (err) => {
-        console.log("ERRORRRRR");
         rej(err);
       })
       .on("data", (chunk) => buf.push(chunk))
@@ -47,9 +46,8 @@ export class StreamDownloaderPlugin {
         await this.readStreams()
       ).map(async ({ id, buf }) => {
         try {
-          console.log(id, "length:", buf.length);
           compilation.emitAsset(
-            `public/${id}.jpeg`,
+            `public/${id}`,
             new Webpack.sources.RawSource(buf, false)
           );
         } catch (e) {
@@ -61,7 +59,6 @@ export class StreamDownloaderPlugin {
 
   apply(compiler: Compiler) {
     compiler.hooks.compilation.tap(pluginName, async (compilation) => {
-      console.log("tapping", pluginName);
       compilation.hooks.processAssets.tapPromise(
         {
           name: "webpack-stream-downloader-plugin",

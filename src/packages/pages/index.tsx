@@ -9,9 +9,6 @@ type pagesComponent = {
 const pages: pagesComponent = {
   index() {
     return <HomePage />;
-  },
-  about() {
-    return <div>It's all about sensitive dogs</div>;
   }
 };
 

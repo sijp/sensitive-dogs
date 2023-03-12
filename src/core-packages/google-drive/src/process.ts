@@ -162,8 +162,8 @@ export default async function process() {
   );
 
   return {
-    getImageStreams: () =>
-      lodash.compact([...imageStreams, ...embeddedImageStreams]),
+    getImageStreams: () => lodash.compact(imageStreams),
+    getEmbeddedImageStreams: () => lodash.compact(embeddedImageStreams),
     processArticles: processArticles(articleFiles),
     processDataBase: processDataBase(database),
     processMenu: processMenu(articlesInfo)

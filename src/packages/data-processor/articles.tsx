@@ -1,3 +1,4 @@
+import lodash from "lodash";
 import { ArticleContent } from "@sensitive-dogs/google-drive";
 
 interface ArticleElement {
@@ -11,6 +12,34 @@ interface ArticleElement {
   horizontalLine: boolean | null | undefined;
   interactive?: string | null | undefined;
 }
+
+interface RawParagraph {
+  type: string | null | undefined;
+  elements: ArticleElement[] | undefined;
+  bulletType: string | undefined;
+  bullet: string | null | undefined;
+}
+
+interface Paragraph {
+  type: string | null | undefined;
+  elements: ArticleElement[] | undefined;
+}
+
+interface IndexedParagraph extends Paragraph {
+  index: number;
+}
+
+interface List {
+  type: "LIST";
+  bulletType: string;
+  paragraphs: Paragraph[];
+}
+
+interface IndexedList extends List {
+  index: number;
+}
+
+type ParsedDocument = Array<Paragraph | List> | null;
 
 function maybeConvertToInteractive(element: ArticleElement) {
   const youtube = (element.text || "").match(
@@ -26,9 +55,56 @@ function maybeConvertToInteractive(element: ArticleElement) {
   return element;
 }
 
-export function parseDocument(doc: ArticleContent) {
+function groupBulletedLists(paragraphs: RawParagraph[]) {
+  const cleanedParagraphs = paragraphs.map((paragraph, index) => ({
+    ...paragraph,
+    index
+  }));
+  const listGroups = lodash.groupBy(
+    cleanedParagraphs,
+    (paragraph) => paragraph.bullet || paragraph.index
+  );
+
+  const indexedGroups = Object.entries(listGroups).map(
+    ([index, paragraphs]) => {
+      if (paragraphs.length === 1) {
+        return [index, paragraphs[0]] as [string, IndexedParagraph];
+      }
+      return [
+        index,
+        {
+          index: 0,
+          type: "LIST",
+          bulletType: paragraphs[0].bulletType || "ol",
+          paragraphs: paragraphs.map(({ index, bullet, bulletType, ...p }) => p)
+        }
+      ] as [string, IndexedList];
+    }
+  );
+
+  const tree = indexedGroups.reduce<
+    Record<string, IndexedList | IndexedParagraph>
+  >((memo, [index, group]) => {
+    return { ...memo, [index]: group };
+  }, {});
+
+  const ret = paragraphs.map(({ bullet, bulletType, ...paragraph }) => {
+    if (!bullet) return paragraph as Paragraph;
+    const { index, ...list } = tree[bullet] as IndexedList;
+    return list as List;
+  });
+
+  return ret;
+}
+
+export function parseDocument(
+  doc: ArticleContent,
+  imagesIdMapper: { [key: string]: string }
+): ParsedDocument {
   const { lists = {} } = doc;
-  const paragraphs = doc.body?.content?.map(({ paragraph }) => {
+  if (!doc.body?.content) return null;
+
+  const paragraphs = doc.body.content.map(({ paragraph }) => {
     if (paragraph) {
       const {
         elements,
@@ -66,8 +142,8 @@ export function parseDocument(doc: ArticleContent) {
               underline,
               bold,
               link: (textLink || imageLink)?.url,
-              image: inlineObjectId,
-              floatImages: positionedObjectIds,
+              image: imagesIdMapper[inlineObjectId || ""],
+              floatImages: positionedObjectIds?.map((id) => imagesIdMapper[id]),
               horizontalLine: !!horizontalRule
             });
           }
@@ -76,5 +152,6 @@ export function parseDocument(doc: ArticleContent) {
     }
     return null;
   });
-  return paragraphs?.filter((p) => p);
+
+  return groupBulletedLists(lodash.compact(paragraphs));
 }
