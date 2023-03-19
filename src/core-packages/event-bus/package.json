@@ -1,0 +1,10 @@
+{
+  "name": "@sensitive-dogs/event-bus",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "GPLv3",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}

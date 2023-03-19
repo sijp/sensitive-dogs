@@ -34,18 +34,18 @@ const ModeratorCardMedia = styled(CardMedia)`
 function TeamList({
   CardMediaComponent,
   list,
-  xs,
-  sm
+  sm,
+  md
 }: {
   CardMediaComponent: typeof AdminCardMedia | typeof ModeratorCardMedia;
   list: Array<TeamRecord>;
-  xs: number;
+  md: number;
   sm: number;
 }) {
   return (
     <Grid container spacing={6} sx={{ justifyContent: "center" }}>
       {list.map((member) => (
-        <Grid xs={xs} sm={sm} key={`${member.name}`}>
+        <Grid md={md} sm={sm} key={`${member.name}`}>
           <Card
             variant="elevation"
             sx={{
@@ -84,15 +84,15 @@ export default function About() {
     return text === "**1**" && admins ? (
       <TeamList
         list={admins}
-        xs={12}
-        sm={4}
+        sm={12}
+        md={4}
         CardMediaComponent={AdminCardMedia}
       />
     ) : text === "**2**" && moderators ? (
       <TeamList
         list={moderators}
-        xs={12}
-        sm={3}
+        sm={6}
+        md={3}
         CardMediaComponent={ModeratorCardMedia}
       />
     ) : null;

@@ -2,11 +2,6 @@ import React from "react";
 import { ProcessedDataType } from "@sensitive-dogs/data-processor";
 import Router from "./Router";
 
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-
 interface AppProps {
   route?: string;
   data: any;

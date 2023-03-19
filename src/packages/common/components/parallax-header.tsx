@@ -35,7 +35,7 @@ export function ParallaxHeader(
         sx={{
           backgroundImage: `url(${props.background})`,
           backgroundSize: "cover",
-          backgroundPosition: ["70% 50%", "70% 50%", "70% 50%", "50% 70%"],
+          backgroundPosition: ["30% 50%", "30% 50%", "30% 50%", "50% 70%"],
           backgroundRepeat: "no-repeat"
         }}
       />

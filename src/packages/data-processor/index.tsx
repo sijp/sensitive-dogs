@@ -3,7 +3,8 @@ import { parseDocument } from "./articles";
 import {
   processProfessionalRecord,
   processTeamRecord,
-  processHomePageRecord
+  processHomePageRecord,
+  processMenuRecord
 } from "./database";
 
 export interface TeamRecord {
@@ -12,6 +13,21 @@ export interface TeamRecord {
   picture: string;
   description: string;
   admin: boolean;
+}
+
+export enum MenuRecordTypes {
+  LINK = "link",
+  ARTICLES = "articles",
+  EXTERNAL = "external"
+}
+
+export interface MenuRecord {
+  id: string;
+  text: string;
+  url: string;
+  icon: string;
+  highlighted: boolean;
+  type: MenuRecordTypes;
 }
 
 export interface ProfessionalRecord {
@@ -42,6 +58,7 @@ export interface HomePageData {
 const TEAM_TABLE_NAME = "team";
 const PROFESSIONALS_TABLE_NAME = "professionals";
 const HOMEPAGE_TABLE_NAME = "home-page";
+const MENU_TABLE_NAME = "menu";
 
 export async function processData() {
   const proc = await processor();
@@ -51,7 +68,11 @@ export async function processData() {
       ? processTeamRecord(columns, record)
       : metadata.name === PROFESSIONALS_TABLE_NAME
       ? processProfessionalRecord(columns, record)
-      : processHomePageRecord(columns, record)
+      : metadata.name === MENU_TABLE_NAME
+      ? processMenuRecord(columns, record)
+      : metadata.name === HOMEPAGE_TABLE_NAME
+      ? processHomePageRecord(columns, record)
+      : null
   );
 
   const teamTable = database.find(
@@ -60,6 +81,9 @@ export async function processData() {
   const professionalsTable = database.find(
     (table) => table.metadata.name === PROFESSIONALS_TABLE_NAME
   );
+  const menuTable = database.find(
+    (table) => table.metadata.name === MENU_TABLE_NAME
+  );
   const homepageTable = database.find(
     (table) => table.metadata.name === HOMEPAGE_TABLE_NAME
   );
@@ -67,13 +91,14 @@ export async function processData() {
   if (!teamTable) throw "Team table is missing";
   if (!professionalsTable) throw "Professional table is missing";
   if (!homepageTable) throw "homepage table is missing";
+  if (!menuTable) throw "menu table is missing";
 
   const team = teamTable.data as unknown as TeamRecord[];
   const professionals = teamTable.data as ProfessionalRecord[];
-
+  const menu = menuTable.data as MenuRecord[];
   const homePage = Object.assign({}, ...homepageTable.data) as HomePageData;
 
-  const menu = proc.processMenu((menuEntry) =>
+  const articlesMenu = proc.processArticlesMenu((menuEntry) =>
     "children" in menuEntry
       ? {
           label: menuEntry.name
@@ -107,6 +132,7 @@ export async function processData() {
 
   return {
     menu,
+    articlesMenu,
     articles,
     team,
     professionals,

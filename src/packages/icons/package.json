@@ -1,0 +1,13 @@
+{
+  "name": "@sensitive-dogs/icons",
+  "version": "1.0.0",
+  "main": "index.tsx",
+  "license": "GPLv3",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "^0.2.0"
+  }
+}

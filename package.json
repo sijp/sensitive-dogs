@@ -13,7 +13,8 @@
   "scripts": {
     "babel-run": "node src/core-packages/babel-run/index.js",
     "dev": "yarn babel-run bundler dev",
-    "build": "yarn babel-run bundler prod",
+    "dev:no-hydrate": "yarn babel-run bundler dev --no-hydrate",
+    "build": "NODE_ENV=PRODUCTION yarn babel-run bundler prod",
     "clean-dist": "rm -rf dist",
     "clean-data": "rm -rf data",
     "prod": "yarn clean-dist && yarn build && yarn serve dist"
