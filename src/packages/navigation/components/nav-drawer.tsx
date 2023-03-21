@@ -70,6 +70,7 @@ function ArticlesMenuFolder({
                         `/article/${article.entry.path}`,
                         article.entry.label
                       );
+                      actions.closeDrawer();
                     }
                   }}
                 >
@@ -141,6 +142,7 @@ export default function NavDrawer() {
                   if (type === "link") {
                     event.preventDefault();
                     actions.navigate(url, text);
+                    actions.closeDrawer();
                   }
                 }}
               >
