@@ -15,5 +15,5 @@ const Image = styled("img")({
 });
 
 export function ArticleImageElement({ src }: ArticleImageElementProps) {
-  return <Image src={`public/${src}`} alt="No Alt" />;
+  return <Image src={`/public/${src}`} alt="No Alt" />;
 }

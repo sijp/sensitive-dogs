@@ -1,5 +1,5 @@
 import lodash from "lodash";
-import { ProfessionalRecord, TeamRecord } from ".";
+import { ProfessionalRecord, TeamRecord, MenuRecord } from ".";
 
 export function processTeamRecord(
   columns: string[],
@@ -12,6 +12,19 @@ export function processTeamRecord(
     }),
     {}
   ) as TeamRecord;
+}
+
+export function processMenuRecord(
+  columns: string[],
+  record: string[]
+): MenuRecord {
+  return columns.reduce(
+    (memo, column, index) => ({
+      ...memo,
+      [column]: record[index]
+    }),
+    {}
+  ) as MenuRecord;
 }
 
 export function processHomePageRecord(_columns: string[], record: string[]) {

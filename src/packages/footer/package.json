@@ -1,5 +1,5 @@
 {
-  "name": "@sensitive-dogs/home-page",
+  "name": "@sensitive-dogs/footer",
   "version": "1.0.0",
   "main": "index.tsx",
   "license": "GPLv3",
@@ -8,6 +8,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.11",
+    "@types/stylis": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

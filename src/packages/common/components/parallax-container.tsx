@@ -5,8 +5,8 @@ export const ParallaxContainer = styled("div")({
   overflowY: "auto",
   overflowX: "hidden",
   perspective: "10px",
-  direction: "ltr",
+  direction: "rtl",
   "& > *": {
-    direction: "rtl"
+    direction: "ltr"
   }
 });

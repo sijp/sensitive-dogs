@@ -4,15 +4,16 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 type RenderFnType = (page: string) => string;
 
 function getPages(
-  pageNames: string[],
+  pagesData: string[][],
   render: RenderFnType
 ): HtmlWebpackPlugin[] {
-  if (!Array.isArray(pageNames))
-    throw "Incompatiable page names: must be a list of strings";
+  if (!Array.isArray(pagesData))
+    throw "Incompatiable page names: must be a list of tuples ";
 
-  return pageNames.map(
-    (page) =>
+  return pagesData.map(
+    ([page, title]) =>
       new HtmlWebpackPlugin({
+        cache: false,
         minify: {
           collapseWhitespace: true,
           keepClosingSlash: true,
@@ -24,7 +25,7 @@ function getPages(
         },
         templateParameters: {
           content: render(page),
-          title: `Hello ${page}`
+          title
         },
         favicon: path.resolve(__dirname, "./public/favicon.ico"),
         filename: `${page === "index" ? "." : page.toLowerCase()}/index.html`,
@@ -34,5 +35,5 @@ function getPages(
 }
 
 export default function webpackStaticPages(render: RenderFnType) {
-  return (pageNames: string[]) => getPages(pageNames, render);
+  return (pagesData: string[][]) => getPages(pagesData, render);
 }

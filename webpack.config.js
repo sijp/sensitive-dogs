@@ -1,8 +1,12 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const isProd = process.env["NODE_ENV"] === "PRODUCTION";
 
 module.exports = {
   entry: path.resolve(__dirname, "./src/core-packages/app/index.tsx"),
-  mode: "development",
+  mode: "production",
+  plugins: [new MiniCssExtractPlugin()],
   module: {
     rules: [
       {
@@ -19,7 +23,18 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          isProd
+            ? {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  publicPath: "./"
+                }
+              }
+            : "style-loader",
+          "css-loader"
+        ],
+        sideEffects: true
       },
       {
         test: /\.(png|jpe?g|gif)$/i,

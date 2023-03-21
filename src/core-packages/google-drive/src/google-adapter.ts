@@ -24,11 +24,11 @@ interface FolderFileData extends FileData {
 }
 
 interface ImageFileData extends FileData {
-  mimeType: MIMETYPES.IMAGE;
+  mimeType: MIMETYPES.IMAGE | MIMETYPES.IMAGE_PNG;
 }
 
 interface EmbeddedImageFileData extends FileData {
-  mimeType: MIMETYPES.IMAGE;
+  mimeType: MIMETYPES.IMAGE | MIMETYPES.IMAGE_PNG;
   uri: string;
 }
 
@@ -52,7 +52,8 @@ export enum MIMETYPES {
   FOLDER = "application/vnd.google-apps.folder",
   ARTICLE = "application/vnd.google-apps.document",
   SCHEMA = "application/vnd.google-apps.spreadsheet",
-  IMAGE = "image/jpeg"
+  IMAGE = "image/jpeg",
+  IMAGE_PNG = "image/png"
 }
 
 export type ArticleContent = docs_v1.Schema$Document;
@@ -243,6 +244,7 @@ export default function GoogleAdapter() {
         );
         return result.data;
       case MIMETYPES.IMAGE:
+      case MIMETYPES.IMAGE_PNG:
         result = await cacheStream(
           `downloads/images/${src.id}`,
           async () =>

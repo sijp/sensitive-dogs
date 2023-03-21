@@ -68,7 +68,7 @@ function processDataBase(database: Table[]) {
     }));
 }
 
-function processMenu(categories: CategoryMetaData) {
+function processArticlesMenu(categories: CategoryMetaData) {
   return <ReturnType>(convertor: MenuEntryConvertorFn<ReturnType>) => {
     const recursiveMap = (
       entry: CategoryMetaData | ArticleMetaData,
@@ -166,6 +166,6 @@ export default async function process() {
     getEmbeddedImageStreams: () => lodash.compact(embeddedImageStreams),
     processArticles: processArticles(articleFiles),
     processDataBase: processDataBase(database),
-    processMenu: processMenu(articlesInfo)
+    processArticlesMenu: processArticlesMenu(articlesInfo)
   };
 }

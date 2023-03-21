@@ -1,9 +1,17 @@
-import { hydrateRoot } from "react-dom/client";
+import { hydrateRoot, createRoot } from "react-dom/client";
+
 import App from "./App";
 
 // @ts-ignore
-const data = process.env.__DATA__;
+export const data = process.env.__DATA__;
 
 const container = document.getElementById("root");
-const route = window?.location.pathname.substring(1) || "index";
-hydrateRoot(container!, <App route={route} data={data} />);
+const route = window?.location.pathname || "/";
+
+// @ts-ignore
+if (process.env.__HYDRATE__) {
+  hydrateRoot(container!, <App route={route} data={data} />);
+} else {
+  const root = createRoot(container!);
+  root.render(<App route={route} data={data} />);
+}
