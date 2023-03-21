@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const isProd = process.env["NODE_ENV"] === "PRODUCTION";
 
 module.exports = {
-  entry: path.resolve(__dirname, "./src/core-packages/app/index.tsx"),
+  entry: path.resolve(__dirname, "./src/packages/app/index.tsx"),
   mode: "production",
   plugins: [new MiniCssExtractPlugin()],
   module: {

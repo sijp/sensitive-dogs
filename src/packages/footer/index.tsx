@@ -3,11 +3,16 @@ import Article from "@sensitive-dogs/article";
 import React from "react";
 import { DataContext } from "@sensitive-dogs/app/App";
 import { FixedBackgroundBox } from "@sensitive-dogs/common";
+import { useListener } from "@sensitive-dogs/event-bus";
 
-export default function Footer() {
+export default function Footer({ route = "/" }: { route: string | undefined }) {
   const data = React.useContext(DataContext);
+  const [eventRoute] = useListener<[string, string]>("app.navigate") || [
+    route === "/" ? "/index" : route,
+    ""
+  ];
 
-  if (!data) return null;
+  if (!data || eventRoute === "/professionals") return <></>;
 
   return (
     <>

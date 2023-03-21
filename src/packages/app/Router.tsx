@@ -9,8 +9,14 @@ interface RouterProps {
 
 function translateRoute(route: string) {
   if (route === "/") return "index";
+  const [path, _hash] = route.includes("#") ? route.split("#") : [route, null];
 
-  return `${route}`.substring(1).toLocaleLowerCase();
+  return `${path}`.substring(1).toLocaleLowerCase();
+}
+
+function getHash(route: string) {
+  const [_path, hash] = route.includes("#") ? route.split("#") : [route, null];
+  return hash;
 }
 
 export default function Router({ route = "/index" }: RouterProps) {
