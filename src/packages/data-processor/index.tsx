@@ -53,6 +53,7 @@ export interface HomePageData {
   button_text: string | null;
   button_link: string | null;
   button_icon: string | null;
+  title: string | null;
 }
 
 const TEAM_TABLE_NAME = "team";

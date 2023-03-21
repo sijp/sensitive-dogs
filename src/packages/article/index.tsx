@@ -5,6 +5,7 @@ import { ArticleTextElement } from "./components/article-text-element";
 import { ArticleImageElement } from "./components/article-image-element";
 import { ArticleHorizontalLineElement } from "./components/article-horizontal-line-element";
 import { ArticleYoutubeElement } from "./components/article-youtube-element";
+import { ArticleFloatingImageElement } from "./components/article-floating-image-element";
 
 interface ArticleProps {
   articleId: string;
@@ -112,11 +113,9 @@ function defaultElementParser(element: ArticleElementType) {
       <ArticleImageElement src={image} />
     </Linkify>
   ) : floatImages?.length ? (
-    <div style={{ float: "right", margin: 16 }}>
-      <Linkify>
-        <ArticleImageElement src={floatImages[0]} />
-      </Linkify>
-    </div>
+    <Linkify>
+      <ArticleFloatingImageElement src={floatImages[0]} />
+    </Linkify>
   ) : text ? (
     <Linkify>
       <ArticleTextElement

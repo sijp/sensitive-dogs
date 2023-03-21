@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Collapse,
+  Link,
   List,
   ListItem,
   ListItemButton,
@@ -29,7 +30,7 @@ interface ArticlesMenuType {
 
 function ArticlesMenuFolder({
   data: {
-    entry: { label, path },
+    entry: { label },
     children
   }
 }: {
@@ -58,13 +59,18 @@ function ArticlesMenuFolder({
                 key={`article-item-${article.entry.path}`}
                 sx={{ paddingLeft: 4 }}
               >
+                {/* @ts-ignore */}
                 <ListItemButton
-                  onClick={() => {
-                    article.entry.path &&
+                  component={NavLink}
+                  href={`/article/${article.entry.path}`}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    if (article.entry.path) {
                       actions.navigate(
                         `/article/${article.entry.path}`,
                         article.entry.label
                       );
+                    }
                   }}
                 >
                   <ListItemIcon>
@@ -90,6 +96,10 @@ function ArticlesMenu({ data }: { data: ArticlesMenuType[] }) {
     </>
   );
 }
+
+const NavLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren>(
+  (props, ref) => <Link {...props} target="_blank" ref={ref} />
+);
 
 export default function NavDrawer() {
   const data = React.useContext(DataContext);
@@ -123,9 +133,15 @@ export default function NavDrawer() {
             ) : null
           ) : (
             <ListItem key={`drawer-item-${id}`} disablePadding>
+              {/* @ts-ignore */}
               <ListItemButton
-                onClick={() => {
-                  type === "link" ? actions.navigate(url, text) : null;
+                component={NavLink}
+                href={url}
+                onClick={(event) => {
+                  if (type === "link") {
+                    event.preventDefault();
+                    actions.navigate(url, text);
+                  }
                 }}
               >
                 <ListItemIcon>

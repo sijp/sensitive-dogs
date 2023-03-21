@@ -18,6 +18,10 @@ const NavButton = styled(Button)(({ theme }) => ({
   }
 }));
 
+const NavLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren>(
+  (props, ref) => <Link {...props} target="_blank" ref={ref} />
+);
+
 export default function NavBar() {
   const data = React.useContext(DataContext);
   const [_, actions] = React.useContext(MenuContext);
@@ -34,9 +38,11 @@ export default function NavBar() {
           color="inherit"
           aria-label="menu"
           sx={(theme) => ({
+            marginLeft: theme.spacing(2),
+            marginRight: theme.spacing(2),
             [theme.breakpoints.down("md")]: {
-              paddingRight: theme.spacing(3),
-              paddingLeft: theme.spacing(3)
+              marginRight: theme.spacing(3),
+              marginLeft: theme.spacing(3)
             }
           })}
           onClick={actions.openDrawer}
@@ -50,8 +56,13 @@ export default function NavBar() {
               key={`navlink-${index}`}
               startIcon={<SensitiveIcon iconName={icon} />}
               size="large"
-              onClick={() => {
-                type === "link" ? actions.navigate(url, text) : null;
+              LinkComponent={NavLink}
+              href={url}
+              onClick={(event) => {
+                if (type === "link") {
+                  event.preventDefault();
+                  actions.navigate(url, text);
+                }
               }}
             >
               <ResponsiveText>{text}</ResponsiveText>
