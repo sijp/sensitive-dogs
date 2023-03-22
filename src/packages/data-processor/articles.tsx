@@ -75,7 +75,7 @@ function groupBulletedLists(paragraphs: RawParagraph[]) {
         {
           index: 0,
           type: "LIST",
-          bulletType: paragraphs[0].bulletType || "ol",
+          bulletType: paragraphs[0].bulletType || "ul",
           paragraphs: paragraphs.map(({ index, bullet, bulletType, ...p }) => p)
         }
       ] as [string, IndexedList];
@@ -88,11 +88,18 @@ function groupBulletedLists(paragraphs: RawParagraph[]) {
     return { ...memo, [index]: group };
   }, {});
 
-  const ret = paragraphs.map(({ bullet, bulletType, ...paragraph }) => {
-    if (!bullet) return paragraph as Paragraph;
-    const { index, ...list } = tree[bullet] as IndexedList;
-    return list as List;
-  });
+  const ret = lodash
+    .uniqBy(
+      cleanedParagraphs,
+      (paragraph) => paragraph.bullet || paragraph.index
+    )
+    .map(({ bullet, bulletType, ...paragraph }) => {
+      if (!bullet) return paragraph as Paragraph;
+      const { index, ...list } = tree[bullet] as IndexedList;
+      return list as List;
+    });
+
+  if ("kix.ovswf3ioox54" in listGroups) console.log(ret);
 
   return ret;
 }
