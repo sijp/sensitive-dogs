@@ -99,8 +99,6 @@ function groupBulletedLists(paragraphs: RawParagraph[]) {
       return list as List;
     });
 
-  if ("kix.ovswf3ioox54" in listGroups) console.log(ret);
-
   return ret;
 }
 

@@ -20,7 +20,7 @@ export default function App({ route, data }: AppProps) {
         <ParallaxContainer id="content">
           <Navigation />
           <Router route={route} />
-          <Footer route={route} />
+          <Footer />
         </ParallaxContainer>
       </SensitiveThemeProvider>
     </DataContext.Provider>

@@ -5,14 +5,10 @@ import { DataContext } from "@sensitive-dogs/app/App";
 import { FixedBackgroundBox } from "@sensitive-dogs/common";
 import { useListener } from "@sensitive-dogs/event-bus";
 
-export default function Footer({ route = "/" }: { route: string | undefined }) {
+export default function Footer() {
   const data = React.useContext(DataContext);
-  const [eventRoute] = useListener<[string, string]>("app.navigate") || [
-    route === "/" ? "/index" : route,
-    ""
-  ];
 
-  if (!data || eventRoute === "/professionals") return <></>;
+  if (!data) return <></>;
 
   return (
     <>
