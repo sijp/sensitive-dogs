@@ -20,11 +20,20 @@ function createActions(
 ) {
   const dispatchFn = dispatch || ((_: any) => {});
   const navigateFn = navigate || ((_: any) => {});
-  return {
+  const actions = {
     openDrawer: () => dispatchFn({ type: ACTIONS.OPEN_DRAWER }),
     closeDrawer: () => dispatchFn({ type: ACTIONS.CLOSE_DRAWER }),
-    navigate: (path: string, title: string) => navigateFn([path, title])
+    navigate: (path: string, title: string) => {
+      navigateFn([path, title]);
+      actions.closeDrawer();
+      setTimeout(() => {
+        document
+          .getElementById("content")
+          ?.scrollTo({ top: 0, behavior: "smooth" });
+      }, 10);
+    }
   };
+  return actions;
 }
 
 function reducer(

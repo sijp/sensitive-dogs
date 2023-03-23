@@ -2,7 +2,7 @@ import React from "react";
 
 import HomePage from "@sensitive-dogs/home-page";
 import ArticlePage from "@sensitive-dogs/article-page";
-import SensitiveThemeProvider from "@sensitive-dogs/sensitive-theme";
+
 import { DataContext } from "@sensitive-dogs/app/App";
 import { ProcessedDataType } from "@sensitive-dogs/data-processor";
 
@@ -19,11 +19,7 @@ function getArticlePages(
       `article/${metadata.id}`,
       [
         `${metadata.name} :: ${websiteTitle}`,
-        () => (
-          <SensitiveThemeProvider>
-            <ArticlePage articleId={metadata.id} />
-          </SensitiveThemeProvider>
-        )
+        () => <ArticlePage articleId={metadata.id} />
       ]
     ])
   );
@@ -40,36 +36,16 @@ export function getPages(data: ProcessedDataType) {
     index: [
       websiteTitle,
       () => {
-        return (
-          <SensitiveThemeProvider>
-            <HomePage />
-          </SensitiveThemeProvider>
-        );
+        return <HomePage />;
       }
     ],
     professionals: [
       `${professionalsTitle} :: ${websiteTitle}`,
       () => {
-        return (
-          <SensitiveThemeProvider>
-            <HomePage />
-          </SensitiveThemeProvider>
-        );
+        return <div style={{ minHeight: "100vh" }} />;
       }
     ],
     ...getArticlePages(articles, websiteTitle)
   };
-  return pages;
-}
-
-export default function usePages() {
-  const data = React.useContext(DataContext);
-
-  if (!data) return {};
-
-  const pages: pagesComponent = React.useMemo<pagesComponent>(
-    () => getPages(data),
-    []
-  );
   return pages;
 }

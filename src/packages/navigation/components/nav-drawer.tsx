@@ -53,33 +53,36 @@ function ArticlesMenuFolder({
       {children ? (
         <Collapse in={open} timeout="auto">
           <List component="div" disablePadding>
-            {children.map((article) => (
-              <ListItem
-                disablePadding
-                key={`article-item-${article.entry.path}`}
-                sx={{ paddingLeft: 4 }}
-              >
-                {/* @ts-ignore */}
-                <ListItemButton
-                  component={NavLink}
-                  href={`/article/${article.entry.path}`}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    if (article.entry.path) {
-                      actions.navigate(
-                        `/article/${article.entry.path}`,
-                        article.entry.label
-                      );
-                    }
-                  }}
+            {[...children]
+              .sort((r1, r2) => (r1.entry.label > r2.entry.label ? 1 : -1))
+              .map((article) => (
+                <ListItem
+                  disablePadding
+                  key={`article-item-${article.entry.path}`}
+                  sx={{ paddingLeft: 4 }}
                 >
-                  <ListItemIcon>
-                    <SensitiveIcon iconName="Circle" />
-                  </ListItemIcon>
-                  <ListItemText primary={article.entry.label} />
-                </ListItemButton>
-              </ListItem>
-            ))}
+                  {/* @ts-ignore */}
+                  <ListItemButton
+                    component={NavLink}
+                    href={`/article/${article.entry.path}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      if (article.entry.path) {
+                        actions.navigate(
+                          `/article/${article.entry.path}`,
+                          article.entry.label
+                        );
+                        actions.closeDrawer();
+                      }
+                    }}
+                  >
+                    <ListItemIcon>
+                      <SensitiveIcon iconName="Circle" />
+                    </ListItemIcon>
+                    <ListItemText primary={article.entry.label} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
           </List>
         </Collapse>
       ) : null}
@@ -90,9 +93,11 @@ function ArticlesMenuFolder({
 function ArticlesMenu({ data }: { data: ArticlesMenuType[] }) {
   return (
     <>
-      {data.map((record, index) => (
-        <ArticlesMenuFolder key={`article-category-${index}`} data={record} />
-      ))}
+      {[...data]
+        .sort((r1, r2) => (r1.entry.label > r2.entry.label ? 1 : -1))
+        .map((record, index) => (
+          <ArticlesMenuFolder key={`article-category-${index}`} data={record} />
+        ))}
     </>
   );
 }
@@ -141,6 +146,7 @@ export default function NavDrawer() {
                   if (type === "link") {
                     event.preventDefault();
                     actions.navigate(url, text);
+                    actions.closeDrawer();
                   }
                 }}
               >

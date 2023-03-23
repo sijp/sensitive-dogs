@@ -70,16 +70,22 @@ const PARAGRAPH_PROPS: Record<
 function ArticleParagraph({
   paragraphType,
   children
-}: {
+}: React.PropsWithChildren<{
   paragraphType: string;
-  children?: React.ReactNode;
-}) {
+}>) {
   const props =
     paragraphType in PARAGRAPH_PROPS
       ? PARAGRAPH_PROPS[paragraphType]
       : PARAGRAPH_PROPS["NORMAL_TEXT"];
 
   return <Typography {...props({})}>{children}</Typography>;
+}
+
+function ArticleListParagraph({
+  bulletType,
+  children
+}: React.PropsWithChildren<{ bulletType: string }>) {
+  return bulletType === "ul" ? <ul>{children}</ul> : <ol>{children}</ol>;
 }
 
 function defaultElementParser(element: ArticleElementType) {
@@ -158,7 +164,26 @@ export default function Article({
   return (
     <>
       {article.map((paragraph, pIndex) =>
-        "bulletType" in paragraph ? null : (
+        "bulletType" in paragraph ? (
+          <ArticleListParagraph
+            bulletType={paragraph.bulletType}
+            key={`list-${pIndex}`}
+          >
+            {paragraph.paragraphs?.map((listParagraph, lpIndex) => (
+              <li key={`list-paragraph-${pIndex}-${lpIndex}`}>
+                <ArticleParagraph paragraphType={listParagraph.type || ""}>
+                  {listParagraph.elements?.map((element, eIndex) => (
+                    <React.Fragment
+                      key={`list-paragraph-element-${pIndex}-${lpIndex}-${eIndex}`}
+                    >
+                      {elementParser(element)}
+                    </React.Fragment>
+                  ))}
+                </ArticleParagraph>
+              </li>
+            ))}
+          </ArticleListParagraph>
+        ) : (
           <ArticleParagraph
             paragraphType={paragraph.type || ""}
             key={`paragraph-${pIndex}`}

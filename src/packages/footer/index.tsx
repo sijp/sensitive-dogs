@@ -3,11 +3,12 @@ import Article from "@sensitive-dogs/article";
 import React from "react";
 import { DataContext } from "@sensitive-dogs/app/App";
 import { FixedBackgroundBox } from "@sensitive-dogs/common";
+import { useListener } from "@sensitive-dogs/event-bus";
 
 export default function Footer() {
   const data = React.useContext(DataContext);
 
-  if (!data) return null;
+  if (!data) return <></>;
 
   return (
     <>
