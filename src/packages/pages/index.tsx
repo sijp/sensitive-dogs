@@ -42,22 +42,10 @@ export function getPages(data: ProcessedDataType) {
     professionals: [
       `${professionalsTitle} :: ${websiteTitle}`,
       () => {
-        return <HomePage />;
+        return <div style={{ minHeight: "100vh" }} />;
       }
     ],
     ...getArticlePages(articles, websiteTitle)
   };
-  return pages;
-}
-
-export default function usePages() {
-  const data = React.useContext(DataContext);
-
-  if (!data) return {};
-
-  const pages: pagesComponent = React.useMemo<pagesComponent>(
-    () => getPages(data),
-    []
-  );
   return pages;
 }

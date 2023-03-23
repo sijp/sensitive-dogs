@@ -1,15 +1,32 @@
 import React from "react";
 
-import { useListener } from "@sensitive-dogs/event-bus";
-import usePages from "@sensitive-dogs/pages";
+import { useListener, useDispatch } from "@sensitive-dogs/event-bus";
+import { getPages } from "@sensitive-dogs/pages";
+import { DataContext } from "@sensitive-dogs/app/App";
 
 interface RouterProps {
   route: string | undefined;
 }
 
+type pagesComponent = {
+  [key: string]: [string, React.FC];
+};
+
+function usePages() {
+  const data = React.useContext(DataContext);
+
+  if (!data) return {};
+
+  const pages: pagesComponent = React.useMemo<pagesComponent>(
+    () => getPages(data),
+    []
+  );
+  return pages;
+}
+
 function translateRoute(route: string) {
-  if (route === "/") return "index";
   const [path, _hash] = route.includes("#") ? route.split("#") : [route, null];
+  if (path === "/") return "index";
 
   return `${path}`.substring(1).toLocaleLowerCase();
 }
@@ -19,36 +36,59 @@ function getHash(route: string) {
   return hash;
 }
 
-export default function Router({ route = "/index" }: RouterProps) {
-  const [eventRoute, eventTitle] = useListener<[string, string]>(
-    "app.navigate"
-  ) || [route === "/" ? "/index" : route, ""];
-  const [stateRoute, setRoute] = React.useState(
-    translateRoute(eventRoute || route)
-  );
-  const pages = usePages();
-  const [configuredTitle, Page] = pages[stateRoute];
-  const title = eventTitle || configuredTitle;
+function useTitleEffect(
+  title: string,
+  path: string,
+  pathHash: string | null,
+  preventPushState: boolean | null
+) {
+  const dispatch = useDispatch<[string, string, boolean]>("app.navigate");
+  const firstUpdate = React.useRef(true);
+  const route = path.toLocaleLowerCase() === "index" ? "/" : path;
+  const hash = pathHash ? `#${pathHash}` : "";
 
   React.useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      history.replaceState({ route, hash, title }, title, `${route}${hash}`);
+      return;
+    }
+    if (!preventPushState) {
+      history.pushState({ route, hash, title }, title, `${route}${hash}`);
+    }
     document.title = title;
-    if (translateRoute(eventRoute) === stateRoute) return;
-    history.pushState({ route: eventRoute, title }, title, eventRoute);
-    setRoute(translateRoute(eventRoute || route));
-  }, [eventRoute]);
+  }, [title, route, hash]);
 
   React.useEffect(() => {
     const popStateCb = (event: PopStateEvent) => {
-      const { route, title } = event.state || {};
-      setRoute(
-        translateRoute(route || window.location.pathname.substring(1)) ||
-          "index"
-      );
-      document.title = title;
+      if (!event.state) return;
+      const {
+        route: prevRoute,
+        title: prevTitle,
+        hash: prevHash
+      } = event.state;
+      dispatch([`${prevRoute}${prevHash}`, prevTitle, true]);
     };
     addEventListener("popstate", popStateCb);
     return () => removeEventListener("popstate", popStateCb);
   }, []);
+}
 
-  return Page ? <Page /> : <div>Page not found</div>;
+export default function Router({ route: initialRoute = "/" }: RouterProps) {
+  const [eventRoute, eventTitle, preventPushState] = useListener<
+    [string, string, boolean | null]
+  >("app.navigate") || [initialRoute, "", true];
+
+  const pages = usePages();
+
+  const route = translateRoute(eventRoute);
+  const hash = getHash(eventRoute);
+  if (!pages[route]) return <div>Page not found</div>;
+
+  const [configuredTitle, Page] = pages[route];
+  const title = configuredTitle || eventTitle;
+
+  useTitleEffect(title, eventRoute.split("#")[0], hash, preventPushState);
+
+  return <Page />;
 }
