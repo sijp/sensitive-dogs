@@ -83,6 +83,21 @@ export default function Router({ route: initialRoute = "/" }: RouterProps) {
 
   const route = translateRoute(eventRoute);
   const hash = getHash(eventRoute);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      if (hash) {
+        document
+          .getElementById(hash)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        document
+          .getElementById("content")
+          ?.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 10);
+  }, [route, hash]);
+
   if (!pages[route]) return <div>Page not found</div>;
 
   const [configuredTitle, Page] = pages[route];

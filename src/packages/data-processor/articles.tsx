@@ -107,7 +107,7 @@ export function parseDocument(
   imagesIdMapper: { [key: string]: string }
 ): ParsedDocument {
   const { lists = {} } = doc;
-  if (!doc.body?.content) return null;
+  if (!doc.body?.content || !Array.isArray(doc.body.content)) return null;
 
   const paragraphs = doc.body.content.map(({ paragraph }) => {
     if (paragraph) {

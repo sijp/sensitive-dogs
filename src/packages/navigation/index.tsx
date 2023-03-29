@@ -26,11 +26,6 @@ function createActions(
     navigate: (path: string, title: string) => {
       navigateFn([path, title]);
       actions.closeDrawer();
-      setTimeout(() => {
-        document
-          .getElementById("content")
-          ?.scrollTo({ top: 0, behavior: "smooth" });
-      }, 10);
     }
   };
   return actions;

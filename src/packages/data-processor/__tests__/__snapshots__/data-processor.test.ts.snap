@@ -1,0 +1,1176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`data-processor processData should match snapshot 1`] = `
+{
+  "articles": [
+    {
+      "article": [
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 1
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 0,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 2
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 1,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 3
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 2,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 4
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 3,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 5
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 4,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Normal Paragraph
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 5,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 6,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "A Paragraph with ",
+              "underline": undefined,
+            },
+            {
+              "bold": true,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "bold",
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": ", ",
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": true,
+              "link": undefined,
+              "text": "italic",
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": " and ",
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "underline",
+              "underline": true,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": ". And all ",
+              "underline": undefined,
+            },
+            {
+              "bold": true,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": true,
+              "link": undefined,
+              "text": "together",
+              "underline": true,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": ".
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 7,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 8,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": undefined,
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 9,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 10,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Ordered Bullets:
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 11,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "bulletType": "ol",
+          "paragraphs": [
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "One
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "Two
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "Three
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+          ],
+          "type": "LIST",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 15,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Unordered Bullets:
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 16,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "bulletType": "ul",
+          "paragraphs": [
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "First
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "Second
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "Third
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+          ],
+          "type": "LIST",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 20,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 21,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 22,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": [
+                undefined,
+              ],
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image.
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 23,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "interactive": "youtube",
+              "italic": undefined,
+              "link": "https://www.youtube.com/embed/12345678901",
+              "text": "https://www.youtube.com/watch?v=12345678901",
+              "underline": true,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 24,
+          "type": "NORMAL_TEXT",
+        },
+      ],
+      "metadata": {
+        "id": "article-description-3",
+        "name": "article3",
+      },
+    },
+    {
+      "article": [
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 1
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 0,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 2
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 1,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 3
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 2,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 4
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 3,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Title 5
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 4,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Normal Paragraph
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 5,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 6,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "A Paragraph with ",
+              "underline": undefined,
+            },
+            {
+              "bold": true,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "bold",
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": ", ",
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": true,
+              "link": undefined,
+              "text": "italic",
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": " and ",
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "underline",
+              "underline": true,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": ". And all ",
+              "underline": undefined,
+            },
+            {
+              "bold": true,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": true,
+              "link": undefined,
+              "text": "together",
+              "underline": true,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": ".
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 7,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 8,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": undefined,
+              "underline": undefined,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 9,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 10,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Ordered Bullets:
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 11,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "bulletType": "ol",
+          "paragraphs": [
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "One
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "Two
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "Three
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+          ],
+          "type": "LIST",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 15,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "Unordered Bullets:
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 16,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "bulletType": "ul",
+          "paragraphs": [
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "First
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "Second
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+            {
+              "elements": [
+                {
+                  "bold": undefined,
+                  "floatImages": undefined,
+                  "horizontalLine": false,
+                  "image": undefined,
+                  "italic": undefined,
+                  "link": undefined,
+                  "text": "Third
+",
+                  "underline": undefined,
+                },
+              ],
+              "type": "NORMAL_TEXT",
+            },
+          ],
+          "type": "LIST",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 20,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 21,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 22,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": [
+                undefined,
+              ],
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image This is a long paragraph with a floating image.
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 23,
+          "type": "NORMAL_TEXT",
+        },
+        {
+          "elements": [
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "interactive": "youtube",
+              "italic": undefined,
+              "link": "https://www.youtube.com/embed/12345678901",
+              "text": "https://www.youtube.com/watch?v=12345678901",
+              "underline": true,
+            },
+            {
+              "bold": undefined,
+              "floatImages": undefined,
+              "horizontalLine": false,
+              "image": undefined,
+              "italic": undefined,
+              "link": undefined,
+              "text": "
+",
+              "underline": undefined,
+            },
+          ],
+          "index": 24,
+          "type": "NORMAL_TEXT",
+        },
+      ],
+      "metadata": {
+        "id": "article-description-4",
+        "name": "article4",
+      },
+    },
+  ],
+  "articlesMenu": {
+    "children": [
+      {
+        "children": [
+          {
+            "entry": {
+              "label": "article3",
+              "path": "article-description-3",
+            },
+            "parent": {
+              "label": "folder-11",
+            },
+          },
+        ],
+        "entry": {
+          "label": "folder-11",
+        },
+        "parent": {
+          "label": "root-folder",
+        },
+      },
+      {
+        "children": [
+          {
+            "entry": {
+              "label": "article4",
+              "path": "article-description-4",
+            },
+            "parent": {
+              "label": "folder-12",
+            },
+          },
+        ],
+        "entry": {
+          "label": "folder-12",
+        },
+        "parent": {
+          "label": "root-folder",
+        },
+      },
+    ],
+    "entry": {
+      "label": "root-folder",
+    },
+    "parent": undefined,
+  },
+  "homePage": {
+    "d11": "d12",
+    "d21": "d22",
+  },
+  "images": [
+    "image",
+    "image",
+  ],
+  "menu": [
+    {
+      "col1": "d11",
+      "col2": "d12",
+    },
+    {
+      "col1": "d21",
+      "col2": "d22",
+    },
+  ],
+  "professionals": [
+    {
+      "col1": "d11",
+      "col2": "d12",
+    },
+    {
+      "col1": "d21",
+      "col2": "d22",
+    },
+  ],
+  "team": [
+    {
+      "col1": "d11",
+      "col2": "d12",
+    },
+    {
+      "col1": "d21",
+      "col2": "d22",
+    },
+  ],
+}
+`;
