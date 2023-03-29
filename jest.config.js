@@ -187,7 +187,18 @@ module.exports = {
   //   "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/node_modules/babel-jest"
   // },
   transform: {
-    "^.+\\.(t|j)sx?$": "@swc/jest"
+    "^.+\\.(t|j)sx?$": [
+      "@swc/jest",
+      {
+        jsc: {
+          transform: {
+            react: {
+              runtime: "automatic"
+            }
+          }
+        }
+      }
+    ]
   }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

@@ -50,10 +50,11 @@ export default function NavBar() {
           <SensitiveIcon iconName="Bars" />
         </IconButton>
         {highlightedMenuItems.map(
-          ({ url, text, icon, type = "link" }, index) => (
+          ({ id, url, text, icon, type = "link" }, index) => (
             <NavButton
               color="inherit"
               key={`navlink-${index}`}
+              data-testid={`navlink-${id}`}
               startIcon={<SensitiveIcon iconName={icon} />}
               size="large"
               LinkComponent={NavLink}

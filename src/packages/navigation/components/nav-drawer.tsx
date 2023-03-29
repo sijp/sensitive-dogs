@@ -41,7 +41,10 @@ function ArticlesMenuFolder({
   return (
     <>
       <ListItem disablePadding>
-        <ListItemButton onClick={() => setOpen(!open)}>
+        <ListItemButton
+          onClick={() => setOpen(!open)}
+          data-testid={`listfolderbutton-${label}`}
+        >
           <ListItemIcon>
             <SensitiveIcon iconName="Newspaper" />
           </ListItemIcon>
@@ -63,6 +66,7 @@ function ArticlesMenuFolder({
                 >
                   {/* @ts-ignore */}
                   <ListItemButton
+                    data-testid={`listarticlebutton-${article.entry.label}`}
                     component={NavLink}
                     href={`/article/${article.entry.path}`}
                     onClick={(event) => {
@@ -140,6 +144,7 @@ export default function NavDrawer() {
             <ListItem key={`drawer-item-${id}`} disablePadding>
               {/* @ts-ignore */}
               <ListItemButton
+                data-testid={`listitembutton-${id}`}
                 component={NavLink}
                 href={url}
                 onClick={(event) => {
