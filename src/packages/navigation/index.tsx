@@ -31,7 +31,7 @@ function createActions(
   return actions;
 }
 
-function reducer(
+export function reducer(
   state: typeof DEFAULT_MENU_CONTEXT,
   { type }: { type: ACTIONS }
 ) {
