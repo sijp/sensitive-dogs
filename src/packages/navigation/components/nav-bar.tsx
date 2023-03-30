@@ -37,6 +37,7 @@ export default function NavBar() {
         <IconButton
           color="inherit"
           aria-label="menu"
+          data-testid="menu-button"
           sx={(theme) => ({
             marginLeft: theme.spacing(2),
             marginRight: theme.spacing(2),

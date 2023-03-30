@@ -130,6 +130,7 @@ export default function NavDrawer() {
       onOpen={actions.openDrawer}
       disableBackdropTransition={!iOS}
       disableDiscovery={iOS}
+      data-testid="drawer"
     >
       <List>
         {menu.map(({ id, text, icon, type, url }) =>
