@@ -110,6 +110,8 @@ const NavLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren>(
   (props, ref) => <Link {...props} target="_blank" ref={ref} />
 );
 
+NavLink.displayName = "NavLink";
+
 export default function NavDrawer() {
   const data = React.useContext(DataContext);
   const [state, actions] = React.useContext(MenuContext);

@@ -22,6 +22,8 @@ const NavLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren>(
   (props, ref) => <Link {...props} target="_blank" ref={ref} />
 );
 
+NavLink.displayName = "NavLink";
+
 export default function NavBar() {
   const data = React.useContext(DataContext);
   const [_, actions] = React.useContext(MenuContext);

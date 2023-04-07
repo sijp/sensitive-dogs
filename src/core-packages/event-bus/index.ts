@@ -9,14 +9,17 @@ function EventBus() {
       : null;
 
   return {
+    // eslint-disable-next-line
     on(eventName: string, callback: CallbackFn<any>) {
       if (!bus) throw "Bus cannot be interacted outside of useEffect";
       bus.addEventListener(eventName, callback);
     },
+    // eslint-disable-next-line
     off(eventName: string, callback: CallbackFn<any>) {
       if (!bus) throw "Bus cannot be interacted outside of useEffect";
       bus.removeEventListener(eventName, callback);
     },
+    // eslint-disable-next-line
     dispatch(eventName: string, data: any) {
       if (!bus) throw "Bus cannot be interacted outside of useEffect";
       bus.dispatchEvent(
