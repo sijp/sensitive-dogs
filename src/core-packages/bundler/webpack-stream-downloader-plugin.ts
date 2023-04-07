@@ -7,7 +7,8 @@ interface Streamable {
 }
 
 function readStream(stream: Readable) {
-  const buf: Array<any> = [];
+  //
+  const buf: Array<any> = []; // eslint-disable-line
   return new Promise<Buffer>((res, rej) => {
     stream
       .on("error", (err) => {

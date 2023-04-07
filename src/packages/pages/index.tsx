@@ -3,7 +3,6 @@ import React from "react";
 import HomePage from "@sensitive-dogs/home-page";
 import ArticlePage from "@sensitive-dogs/article-page";
 
-import { DataContext } from "@sensitive-dogs/app/App";
 import { ProcessedDataType } from "@sensitive-dogs/data-processor";
 
 type pagesComponent = {

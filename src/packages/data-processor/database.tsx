@@ -37,6 +37,7 @@ export function processProfessionalRecord(
 ): ProfessionalRecord {
   const indexOfCities = columns.indexOf("cities");
   const indexOfServices = columns.indexOf("services");
+
   return {
     ...columns.slice(0, indexOfCities).reduce(
       (memo, column, index) => ({
@@ -47,16 +48,16 @@ export function processProfessionalRecord(
     ),
     cities: lodash.compact(
       record
-        .slice(indexOfCities, indexOfServices)
+        .slice(indexOfCities + 1, indexOfServices)
         .map((value, index) =>
-          value === "TRUE" ? columns[indexOfCities + index] : undefined
+          value === "TRUE" ? columns[indexOfCities + index + 1] : undefined
         )
     ),
     services: lodash.compact(
       record
-        .slice(indexOfServices)
+        .slice(indexOfServices + 1, columns.length)
         .map((value, index) =>
-          value === "TRUE" ? columns[indexOfServices + index] : undefined
+          value === "TRUE" ? columns[indexOfServices + index + 1] : undefined
         )
     )
   } as ProfessionalRecord;

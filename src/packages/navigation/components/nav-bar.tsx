@@ -22,6 +22,8 @@ const NavLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren>(
   (props, ref) => <Link {...props} target="_blank" ref={ref} />
 );
 
+NavLink.displayName = "NavLink";
+
 export default function NavBar() {
   const data = React.useContext(DataContext);
   const [_, actions] = React.useContext(MenuContext);
@@ -37,6 +39,7 @@ export default function NavBar() {
         <IconButton
           color="inherit"
           aria-label="menu"
+          data-testid="menu-button"
           sx={(theme) => ({
             marginLeft: theme.spacing(2),
             marginRight: theme.spacing(2),
@@ -50,10 +53,11 @@ export default function NavBar() {
           <SensitiveIcon iconName="Bars" />
         </IconButton>
         {highlightedMenuItems.map(
-          ({ url, text, icon, type = "link" }, index) => (
+          ({ id, url, text, icon, type = "link" }, index) => (
             <NavButton
               color="inherit"
               key={`navlink-${index}`}
+              data-testid={`navlink-${id}`}
               startIcon={<SensitiveIcon iconName={icon} />}
               size="large"
               LinkComponent={NavLink}

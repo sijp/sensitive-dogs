@@ -86,7 +86,7 @@ function processArticlesMenu(categories: CategoryMetaData) {
               )
             ),
             entry: convertedEntry,
-            parent: convertedEntry
+            parent
           }
         : { entry: convertedEntry, parent };
     };
@@ -95,7 +95,7 @@ function processArticlesMenu(categories: CategoryMetaData) {
   };
 }
 
-export default async function process() {
+export default async function processGoogleDrive() {
   const {
     getImages,
     getArticles,
@@ -127,7 +127,9 @@ export default async function process() {
     })
   );
 
-  console.log("\tGetting embedded images:");
+  if (process.env["NODE_ENV"] !== "test") {
+    console.log("\tGetting embedded images:");
+  }
   const embeddedImageStreams = await Promise.all(
     articleFiles.flatMap(({ embeddedImages }) =>
       embeddedImages.map((image) =>

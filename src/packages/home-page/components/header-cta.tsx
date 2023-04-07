@@ -1,12 +1,15 @@
 import { Card, Typography, Button, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
+
 import { SensitiveIcon } from "@sensitive-dogs/icons";
+import { useDispatch } from "@sensitive-dogs/event-bus";
 
 interface HeaderCTAProps {
   logo?: string | null;
   text?: string | null;
   buttonText?: string | null;
   buttonIcon?: string | null;
+  buttonLink?: string | null;
 }
 
 const CTACard = styled(Card)(({ theme }) => ({
@@ -74,8 +77,11 @@ export default function HeaderCTA({
   logo,
   text,
   buttonIcon,
-  buttonText
+  buttonText,
+  buttonLink
 }: HeaderCTAProps) {
+  const navigateFn = useDispatch<[string]>("app.navigate");
+
   return (
     <CTACard>
       <div>
@@ -86,7 +92,12 @@ export default function HeaderCTA({
         <CTAButton
           variant="contained"
           color="primary"
+          data-testid="cta-button"
+          href={buttonLink || ""}
           startIcon={<SensitiveIcon iconName={buttonIcon || ""} />}
+          onClick={() => {
+            buttonLink && navigateFn([buttonLink]);
+          }}
         >
           {buttonText}
         </CTAButton>

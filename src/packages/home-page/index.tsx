@@ -8,7 +8,8 @@ export default function HomePage() {
     <>
       <Header />
 
-      <Box id="about" sx={{ bgcolor: "background.paper", paddingBottom: 10 }}>
+      <Box sx={{ bgcolor: "background.paper", paddingBottom: 10 }}>
+        <div id="about" style={{ position: "relative", top: -50 }} />
         <About />
       </Box>
     </>

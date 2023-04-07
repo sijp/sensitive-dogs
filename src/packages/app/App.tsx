@@ -8,6 +8,7 @@ import Router from "./Router";
 
 interface AppProps {
   route?: string;
+  // eslint-disable-next-line
   data: any;
 }
 

@@ -76,7 +76,14 @@ function groupBulletedLists(paragraphs: RawParagraph[]) {
           index: 0,
           type: "LIST",
           bulletType: paragraphs[0].bulletType || "ul",
-          paragraphs: paragraphs.map(({ index, bullet, bulletType, ...p }) => p)
+          paragraphs: paragraphs.map(
+            ({
+              index: _index,
+              bullet: _bullet,
+              bulletType: _bulletType,
+              ...p
+            }) => p
+          )
         }
       ] as [string, IndexedList];
     }
@@ -93,9 +100,9 @@ function groupBulletedLists(paragraphs: RawParagraph[]) {
       cleanedParagraphs,
       (paragraph) => paragraph.bullet || paragraph.index
     )
-    .map(({ bullet, bulletType, ...paragraph }) => {
+    .map(({ bullet, bulletType: _bulletType, ...paragraph }) => {
       if (!bullet) return paragraph as Paragraph;
-      const { index, ...list } = tree[bullet] as IndexedList;
+      const { index: _index, ...list } = tree[bullet] as IndexedList;
       return list as List;
     });
 
@@ -107,7 +114,7 @@ export function parseDocument(
   imagesIdMapper: { [key: string]: string }
 ): ParsedDocument {
   const { lists = {} } = doc;
-  if (!doc.body?.content) return null;
+  if (!doc.body?.content || !Array.isArray(doc.body.content)) return null;
 
   const paragraphs = doc.body.content.map(({ paragraph }) => {
     if (paragraph) {

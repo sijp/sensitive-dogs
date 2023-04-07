@@ -41,7 +41,10 @@ function ArticlesMenuFolder({
   return (
     <>
       <ListItem disablePadding>
-        <ListItemButton onClick={() => setOpen(!open)}>
+        <ListItemButton
+          onClick={() => setOpen(!open)}
+          data-testid={`listfolderbutton-${label}`}
+        >
           <ListItemIcon>
             <SensitiveIcon iconName="Newspaper" />
           </ListItemIcon>
@@ -63,6 +66,7 @@ function ArticlesMenuFolder({
                 >
                   {/* @ts-ignore */}
                   <ListItemButton
+                    data-testid={`listarticlebutton-${article.entry.label}`}
                     component={NavLink}
                     href={`/article/${article.entry.path}`}
                     onClick={(event) => {
@@ -106,6 +110,8 @@ const NavLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren>(
   (props, ref) => <Link {...props} target="_blank" ref={ref} />
 );
 
+NavLink.displayName = "NavLink";
+
 export default function NavDrawer() {
   const data = React.useContext(DataContext);
   const [state, actions] = React.useContext(MenuContext);
@@ -126,6 +132,7 @@ export default function NavDrawer() {
       onOpen={actions.openDrawer}
       disableBackdropTransition={!iOS}
       disableDiscovery={iOS}
+      data-testid="drawer"
     >
       <List>
         {menu.map(({ id, text, icon, type, url }) =>
@@ -140,6 +147,7 @@ export default function NavDrawer() {
             <ListItem key={`drawer-item-${id}`} disablePadding>
               {/* @ts-ignore */}
               <ListItemButton
+                data-testid={`listitembutton-${id}`}
                 component={NavLink}
                 href={url}
                 onClick={(event) => {

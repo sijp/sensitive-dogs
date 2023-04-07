@@ -89,10 +89,10 @@ export async function processData() {
     (table) => table.metadata.name === HOMEPAGE_TABLE_NAME
   );
 
-  if (!teamTable) throw "Team table is missing";
-  if (!professionalsTable) throw "Professional table is missing";
-  if (!homepageTable) throw "homepage table is missing";
-  if (!menuTable) throw "menu table is missing";
+  if (!teamTable) throw new Error("Team table is missing");
+  if (!professionalsTable) throw new Error("Professional table is missing");
+  if (!homepageTable) throw new Error("homepage table is missing");
+  if (!menuTable) throw new Error("menu table is missing");
 
   const team = teamTable.data as unknown as TeamRecord[];
   const professionals = teamTable.data as ProfessionalRecord[];

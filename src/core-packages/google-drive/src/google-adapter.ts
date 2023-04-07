@@ -91,10 +91,10 @@ async function cache<T>(name: string, cb: () => T, msg?: string | undefined) {
     const fileName = `.cache/${name}`;
     if (msg) process.stdout.write(`${msg}...`);
     if (existsSync(fileName) && statSync(fileName).isFile()) {
-      if (msg) process.stdout.write(`CACHE HIT\n`);
+      if (msg) process.stdout.write("CACHE HIT\n");
       return JSON.parse(await readFile(fileName, { encoding: "utf8" })) as T;
     }
-    process.stdout.write(`CACHE MISS\n`);
+    process.stdout.write("CACHE MISS\n");
 
     const data = await cb();
     const folder = path.dirname(fileName);
@@ -121,11 +121,11 @@ async function cacheStream(
   const fileName = `.cache/${name}`;
   if (msg) process.stdout.write(`${msg}...`);
   if (existsSync(fileName) && statSync(fileName).isFile()) {
-    if (msg) process.stdout.write(`CACHE HIT\n`);
+    if (msg) process.stdout.write("CACHE HIT\n");
     return readFileToStream(fileName);
   }
 
-  process.stdout.write(`CACHE MISS\n`);
+  process.stdout.write("CACHE MISS\n");
   const stream = await cb();
   const folder = path.dirname(fileName);
   if (
@@ -181,10 +181,10 @@ export default function GoogleAdapter() {
         fields: "nextPageToken, files(id, name, mimeType, description)"
       });
       if (!res.data.files?.length) {
-        throw new Error(`Bad or empty image directory`);
+        throw new Error("Bad or empty image directory");
       }
 
-      let files = [res.data.files];
+      const files = [res.data.files];
       while (res.data.nextPageToken) {
         const pageToken = res.data.nextPageToken;
         res = await drive.files.list({

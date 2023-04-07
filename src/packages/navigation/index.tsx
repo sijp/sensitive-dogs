@@ -18,19 +18,18 @@ function createActions(
   dispatch: React.Dispatch<{ type: ACTIONS }> | null,
   navigate: null | ((path: [string, string]) => void)
 ) {
-  const dispatchFn = dispatch || ((_: any) => {});
-  const navigateFn = navigate || ((_: any) => {});
   const actions = {
-    openDrawer: () => dispatchFn({ type: ACTIONS.OPEN_DRAWER }),
-    closeDrawer: () => dispatchFn({ type: ACTIONS.CLOSE_DRAWER }),
+    openDrawer: () => {
+      dispatch && dispatch({ type: ACTIONS.OPEN_DRAWER });
+    },
+    closeDrawer: () => {
+      dispatch && dispatch({ type: ACTIONS.CLOSE_DRAWER });
+    },
     navigate: (path: string, title: string) => {
-      navigateFn([path, title]);
+      if (navigate) {
+        navigate([path, title]);
+      }
       actions.closeDrawer();
-      setTimeout(() => {
-        document
-          .getElementById("content")
-          ?.scrollTo({ top: 0, behavior: "smooth" });
-      }, 10);
     }
   };
   return actions;

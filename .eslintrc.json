@@ -1,0 +1,56 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "react": {
+      "version": "18"
+    },
+    "import/resolver": {
+      "node": {},
+      "workspaces":{
+        "extensions": [".mjs", ".js", ".ts", ".tsx", ".json"],
+        "sources": {
+          "@sensitive-dogs/*": ["src/packages/*","src/core-packages/*"]
+        }
+      }
+    }
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "react/prop-types": "off",
+    "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/no-var-requires": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-ignore": "allow"
+      }
+    ]
+  }
+}

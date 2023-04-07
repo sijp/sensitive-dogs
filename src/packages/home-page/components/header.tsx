@@ -25,6 +25,7 @@ export default function Header() {
             logo={homePage.logo}
             buttonText={homePage.button_text}
             buttonIcon={homePage.button_icon}
+            buttonLink={homePage.button_link}
           />
         </Box>
       </Box>
