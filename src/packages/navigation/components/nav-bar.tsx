@@ -1,9 +1,18 @@
 import React from "react";
-import { AppBar, Button, IconButton, Link, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Fade,
+  IconButton,
+  Link,
+  Toolbar
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { DataContext } from "@sensitive-dogs/app/App";
-import { SensitiveIcon } from "@sensitive-dogs/icons";
+import { SensitiveSymbol } from "@sensitive-dogs/icons";
 import { ResponsiveText } from "@sensitive-dogs/common";
+import { useFiltersButton } from "@sensitive-dogs/professionals/hooks/use-filters-button";
 import { MenuContext } from "..";
 
 const NavButton = styled(Button)(({ theme }) => ({
@@ -26,7 +35,29 @@ NavLink.displayName = "NavLink";
 
 export default function NavBar() {
   const data = React.useContext(DataContext);
-  const [_, actions] = React.useContext(MenuContext);
+  const [{ route }, actions] = React.useContext(MenuContext);
+  const [
+    _,
+    setFiltersOpen,
+    { icon: filtersIcon, label: filtersLabel, isVisible: isFiltersIconVisible }
+  ] = useFiltersButton(route);
+  const [showExtraActions, setShowExtraActions] = React.useState(false);
+
+  React.useEffect(() => {
+    const content = document.getElementById("content");
+    const handler = () => {
+      if (content && content.scrollTop > 20) {
+        setShowExtraActions(true);
+      } else {
+        setShowExtraActions(false);
+      }
+    };
+    content?.addEventListener("scroll", handler);
+
+    return () => {
+      content?.removeEventListener("scroll", handler);
+    };
+  }, []);
 
   if (!data) return null;
 
@@ -50,7 +81,7 @@ export default function NavBar() {
           })}
           onClick={actions.openDrawer}
         >
-          <SensitiveIcon iconName="Bars" />
+          <SensitiveSymbol iconName="menu" style={{ fontSize: 28 }} />
         </IconButton>
         {highlightedMenuItems.map(
           ({ id, url, text, icon, type = "link" }, index) => (
@@ -58,7 +89,9 @@ export default function NavBar() {
               color="inherit"
               key={`navlink-${index}`}
               data-testid={`navlink-${id}`}
-              startIcon={<SensitiveIcon iconName={icon} />}
+              startIcon={
+                <SensitiveSymbol iconName={icon} style={{ fontSize: 28 }} />
+              }
               size="large"
               LinkComponent={NavLink}
               href={url}
@@ -73,6 +106,26 @@ export default function NavBar() {
             </NavButton>
           )
         )}
+        {isFiltersIconVisible ? (
+          <Box
+            sx={{ flexGrow: 1, display: "flex", flexDirection: "row-reverse" }}
+          >
+            <Fade in={showExtraActions}>
+              <NavButton
+                onClick={() => setFiltersOpen(true)}
+                color="inherit"
+                startIcon={
+                  <SensitiveSymbol
+                    iconName={filtersIcon}
+                    style={{ fontSize: 28 }}
+                  />
+                }
+              >
+                <ResponsiveText>{filtersLabel}</ResponsiveText>
+              </NavButton>
+            </Fade>
+          </Box>
+        ) : null}
       </Toolbar>
     </AppBar>
   );

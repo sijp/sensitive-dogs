@@ -6,7 +6,11 @@ import App from "./App";
 export const data = process.env.__DATA__;
 
 const container = document.getElementById("root");
-const route = [window.location.pathname, window.location.hash].join("");
+const route = [
+  window.location.pathname,
+  window.location.hash,
+  window.location.search
+].join("");
 
 // @ts-ignore
 if (process.env.__HYDRATE__) {

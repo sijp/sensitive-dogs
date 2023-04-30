@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 import { DataContext } from "@sensitive-dogs/app/App";
-import { SensitiveIcon } from "@sensitive-dogs/icons";
+import { SensitiveSymbol } from "@sensitive-dogs/icons";
 import { MenuContext } from "..";
 
 enum MenuRecordTypes {
@@ -46,11 +46,11 @@ function ArticlesMenuFolder({
           data-testid={`listfolderbutton-${label}`}
         >
           <ListItemIcon>
-            <SensitiveIcon iconName="Newspaper" />
+            <SensitiveSymbol iconName="Newspaper" />
           </ListItemIcon>
           <ListItemText primary={label} />
 
-          <SensitiveIcon iconName={open ? "ChevronUp" : "ChevronDown"} />
+          <SensitiveSymbol iconName={open ? "expand_more" : "expand_less"} />
         </ListItemButton>
       </ListItem>
       {children ? (
@@ -81,7 +81,7 @@ function ArticlesMenuFolder({
                     }}
                   >
                     <ListItemIcon>
-                      <SensitiveIcon iconName="Circle" />
+                      <SensitiveSymbol iconName="Circle" />
                     </ListItemIcon>
                     <ListItemText primary={article.entry.label} />
                   </ListItemButton>
@@ -159,7 +159,7 @@ export default function NavDrawer() {
                 }}
               >
                 <ListItemIcon>
-                  <SensitiveIcon iconName={icon} />
+                  <SensitiveSymbol iconName={icon} />
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

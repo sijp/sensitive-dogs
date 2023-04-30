@@ -95,7 +95,7 @@ export async function processData() {
   if (!menuTable) throw new Error("menu table is missing");
 
   const team = teamTable.data as unknown as TeamRecord[];
-  const professionals = teamTable.data as ProfessionalRecord[];
+  const professionals = professionalsTable.data as ProfessionalRecord[];
   const menu = menuTable.data as MenuRecord[];
   const homePage = Object.assign({}, ...homepageTable.data) as HomePageData;
 

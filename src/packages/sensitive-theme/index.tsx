@@ -6,7 +6,6 @@ import { prefixer } from "stylis";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React from "react";
 
-import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./index.css";
 
 const theme = createTheme({

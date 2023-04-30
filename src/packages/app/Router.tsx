@@ -25,14 +25,24 @@ function usePages() {
 }
 
 function translateRoute(route: string) {
-  const [path, _hash] = route.includes("#") ? route.split("#") : [route, null];
+  const [pathName, _querystring] = route.includes("?")
+    ? route.split("?")
+    : [route, null];
+  const [path, _hash] = pathName.includes("#")
+    ? pathName.split("#")
+    : [pathName, null];
   if (path === "/") return "index";
 
   return `${path}`.substring(1).toLocaleLowerCase();
 }
 
 function getHash(route: string) {
-  const [_path, hash] = route.includes("#") ? route.split("#") : [route, null];
+  const [pathName, _querystring] = route.includes("?")
+    ? route.split("?")
+    : [route, null];
+  const [_path, hash] = pathName.includes("#")
+    ? pathName.split("#")
+    : [pathName, null];
   return hash;
 }
 
@@ -98,11 +108,11 @@ export default function Router({ route: initialRoute = "/" }: RouterProps) {
     }, 10);
   }, [route, hash]);
 
-  if (!pages[route]) return <div>Page not found</div>;
-
-  const [configuredTitle, Page] = pages[route];
+  const [configuredTitle, Page] = pages[route] || [
+    "Not Found",
+    () => <div>Page not found</div>
+  ];
   const title = configuredTitle || eventTitle;
-
   useTitleEffect(title, eventRoute.split("#")[0], hash, preventPushState);
 
   return <Page />;

@@ -19,7 +19,7 @@ export default function App({ route, data }: AppProps) {
     <DataContext.Provider value={data}>
       <SensitiveThemeProvider>
         <ParallaxContainer id="content">
-          <Navigation />
+          <Navigation route={route} />
           <Router route={route} />
           <Footer />
         </ParallaxContainer>
