@@ -30,6 +30,11 @@ jobs:
           project_id: ${{ secrets.GCS_PROJECT }}
           export_default_credentials: true
 
+      - id: "gcloud-test"
+        name: "gcloud-test"
+        run: |-
+          gcloud secrets versions access "latest" --secret "my-secret"
+
       - name: Checkout repository
         uses: actions/checkout@v2
 
