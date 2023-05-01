@@ -20,8 +20,8 @@ jobs:
         name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v1"
         with:
-          workload_identity_provider: "${{ secrets.GCS_WORKLOAD_IDENTITY_PROVIDER }}"
-          service_account: ${{ secrets.GCS_SERVICE_ACCOUNT }}
+          workload_identity_provider: "projects/365520006193/locations/global/workloadIdentityPools/sensitive-dogs/providers/sensitive-dogs"
+          service_account: "sensitive-github-actions@workload-identity-pools-385416.iam.gserviceaccount.com"
 
       - name: Setup - gcloud / gsutil
         uses: google-github-actions/setup-gcloud@v1
