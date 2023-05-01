@@ -20,15 +20,11 @@ jobs:
         name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v1"
         with:
-          workload_identity_provider: ${{ secrets.GCS_WORKLOAD_IDENTITY_PROVIDER }}
+          workload_identity_provider: "${{ secrets.GCS_WORKLOAD_IDENTITY_PROVIDER }}"
           service_account: ${{ secrets.GCS_SERVICE_ACCOUNT }}
 
       - name: Setup - gcloud / gsutil
         uses: google-github-actions/setup-gcloud@v1
-        with:
-          service_account_key: ${{ secrets.GOOGLE_API_CREDS }}
-          project_id: ${{ secrets.GCS_PROJECT }}
-          export_default_credentials: true
 
       - id: "gcloud-test"
         name: "gcloud-test"
