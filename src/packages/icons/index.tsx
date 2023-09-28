@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+
 import "material-symbols/outlined.css";
 
 import facebook from "@mui/icons-material/Facebook";
@@ -9,6 +10,9 @@ import info from "@mui/icons-material/Info";
 import person_search from "@mui/icons-material/PersonSearch";
 import menu from "@mui/icons-material/Menu";
 import filter_alt from "@mui/icons-material/FilterAlt";
+import favorite from "@mui/icons-material/Favorite";
+import local_police from "@mui/icons-material/LocalPolice";
+import shield from "@mui/icons-material/Shield";
 
 const materialIcons: Record<string, typeof facebook> = {
   facebook,
@@ -18,7 +22,10 @@ const materialIcons: Record<string, typeof facebook> = {
   info,
   person_search,
   menu,
-  filter_alt
+  filter_alt,
+  favorite,
+  local_police,
+  shield
 };
 export function SensitiveSymbol({
   iconName,

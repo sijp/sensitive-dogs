@@ -110,7 +110,7 @@ export function ResultCard({
           {picture ? (
             <CardMedia
               sx={{
-                height: fullscreen ? "50vh" : 150,
+                height: fullscreen ? "30vh" : 150,
                 backgroundPosition: "50% 30%"
               }}
               image={`public/${picture}`}
@@ -120,9 +120,6 @@ export function ResultCard({
           <Box sx={{ display: "flex", alignItems: "stretch" }}>
             <CardHeader
               title={fullName}
-              titleTypographyProps={{
-                fontSize: fullscreen ? "2em" : undefined
-              }}
               sx={{
                 width: isAdmin || isModerator || pinned ? "70%" : "100%"
               }}
@@ -133,46 +130,56 @@ export function ResultCard({
                   width: "30%",
                   display: "flex",
                   flexDirection: "row-reverse",
-                  alignItems: "start",
+                  alignItems: "center",
                   padding: 2
                 }}
               >
                 <Typography color="primary" variant="h4">
                   {isAdmin ? (
                     <>
-                      <SensitiveSymbol iconName="shield_with_heart" />{" "}
-                      {fullscreen ? "מנהל/ת" : null}
+                      <SensitiveSymbol iconName="local_police" />
                     </>
                   ) : isModerator ? (
                     <>
-                      <SensitiveSymbol iconName="shield" />{" "}
-                      {fullscreen ? "מגשר/ת" : null}
+                      <SensitiveSymbol iconName="shield" />
                     </>
                   ) : pinned ? (
                     <>
-                      <SensitiveSymbol iconName="recommend" />{" "}
-                      {fullscreen ? "מומלץ/ת" : null}
+                      <SensitiveSymbol iconName="favorite" />
                     </>
                   ) : null}
                 </Typography>
+
+                {fullscreen ? (
+                  <Typography color="GrayText" variant="body2">
+                    {isAdmin ? (
+                      <>מנהל/ת</>
+                    ) : isModerator ? (
+                      <>מגשר/ת</>
+                    ) : pinned ? (
+                      <>פעיל/ה בקהילה</>
+                    ) : null}
+                  </Typography>
+                ) : null}
               </Box>
             ) : null}
           </Box>
           <CardContent
             sx={{
-              ...(fullscreen ? {} : { height: 150 }),
-              overflowY: "hidden"
+              ...(fullscreen
+                ? { overflowY: "auto" }
+                : { height: 150, overflowY: "hidden" })
             }}
           >
             <Typography
-              variant="body2"
+              variant={fullscreen ? "body1" : "body2"}
               color="text.primary"
-              sx={{ fontSize: fullscreen ? "1.5em" : null }}
+              sx={{ whiteSpace: "pre-line" }}
             >
               <NonMinifiedText
                 text={
-                  !fullscreen && description.length > 300
-                    ? `${description.substring(0, 300)}...`
+                  !fullscreen && description.length > (picture ? 150 : 200)
+                    ? `${description.substring(0, picture ? 150 : 200)}...`
                     : description
                 }
               />
@@ -246,7 +253,7 @@ export function ResultCard({
               ) : null}
             </Box>
             {fullscreen ? (
-              <Box sx={{ display: "flex", gap: 1 }}>
+              <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                 {phone ? (
                   <>
                     <Button
@@ -336,7 +343,7 @@ export function ResultCard({
               sx={{
                 marginTop: "auto",
                 display: "flex",
-                flexDirection: "column"
+                flexDirection: ["column", "column", "row"]
               }}
             >
               <Button

@@ -1,3 +1,5 @@
+import "material-symbols/outlined.css";
+
 import React from "react";
 import { ProcessedDataType } from "@sensitive-dogs/data-processor";
 import SensitiveThemeProvider from "@sensitive-dogs/sensitive-theme";

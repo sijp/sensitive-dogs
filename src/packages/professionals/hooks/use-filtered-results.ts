@@ -33,7 +33,7 @@ export function useFilteredResults() {
     )
     .map((p) => ({
       ...p,
-      fullName: `${p.firstName} ${p.lastName}`,
+      fullName: `${p.firstName || ""} ${p.lastName || ""}`,
       isAdmin: admins.includes(`${p.firstName} ${p.lastName}`),
       isModerator: moderators.includes(`${p.firstName} ${p.lastName}`),
       services: lodash(p.services)

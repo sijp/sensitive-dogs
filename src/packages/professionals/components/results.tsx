@@ -1,16 +1,30 @@
 import React from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Container, Dialog } from "@mui/material";
+import { Container, Dialog, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import Slide from "@mui/material/Slide";
+import { TransitionProps } from "@mui/material/transitions/index.d";
 
 import { useFilteredResults } from "../hooks/use-filtered-results";
 
 import { ResultCard } from "./result-card";
 
+const Transition = React.forwardRef(function Transition(
+  props: React.PropsWithChildren<TransitionProps>,
+  ref: React.Ref<unknown>
+) {
+  // @ts-ignore
+  return <Slide direction="down" ref={ref} {...props} timeout={350} />;
+});
+
 export function Results() {
   const [results, activeServices, activeLocation] = useFilteredResults();
-  const [selected, setSelected] = React.useState<typeof results[0] | null>(
+  const [selected, setSelected] = React.useState<(typeof results)[0] | null>(
     null
   );
+
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const clearSelection = () => {
     setSelected(null);
@@ -34,7 +48,22 @@ export function Results() {
           </Grid>
         ))}
       </Grid>
-      <Dialog fullScreen open={Boolean(selected)} onClose={clearSelection}>
+      <Dialog
+        open={Boolean(selected)}
+        onClose={clearSelection}
+        maxWidth="xl"
+        PaperProps={{
+          sx: {
+            minHeight: [0, 0, "70vh"],
+            alignItems: "stretch",
+            flexDirection: "column"
+          }
+        }}
+        fullWidth={true}
+        fullScreen={true}
+        keepMounted
+        TransitionComponent={Transition}
+      >
         {selected ? (
           <ResultCard
             {...{

@@ -106,11 +106,19 @@ export default function NavBar() {
             </NavButton>
           )
         )}
-        {isFiltersIconVisible ? (
-          <Box
-            sx={{ flexGrow: 1, display: "flex", flexDirection: "row-reverse" }}
+
+        <Box
+          sx={{ flexGrow: 1, display: "flex", flexDirection: "row-reverse" }}
+        >
+          <NavButton
+            onClick={() => history.back()}
+            color="inherit"
+            sx={{ display: ["flex", "flex", "none"] }}
           >
-            <Fade in={showExtraActions}>
+            <SensitiveSymbol iconName={"arrow_back"} style={{ fontSize: 28 }} />
+          </NavButton>
+          {isFiltersIconVisible ? (
+            <Fade in={showExtraActions} mountOnEnter unmountOnExit>
               <NavButton
                 onClick={() => setFiltersOpen(true)}
                 color="inherit"
@@ -124,8 +132,8 @@ export default function NavBar() {
                 <ResponsiveText>{filtersLabel}</ResponsiveText>
               </NavButton>
             </Fade>
-          </Box>
-        ) : null}
+          ) : null}
+        </Box>
       </Toolbar>
     </AppBar>
   );
