@@ -113,7 +113,7 @@ export function ResultCard({
                 height: fullscreen ? "30vh" : 150,
                 backgroundPosition: "50% 30%"
               }}
-              image={`public/${picture}`}
+              image={`/public/${picture}`}
             />
           ) : null}
 

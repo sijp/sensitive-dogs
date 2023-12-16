@@ -13,7 +13,7 @@ export default function Footer() {
     <>
       <FixedBackgroundBox
         height="50vh"
-        background="/public/embedded-image-5.jpeg"
+        background="/public/embedded-image-4.jpeg"
         backgroundPosition="10vh"
       ></FixedBackgroundBox>
       <Box
