@@ -54,7 +54,7 @@ describe("navigation", () => {
         <DataContext.Provider value={baseData}>
           <MenuContext.Provider
             value={[
-              { drawer: { open: false } },
+              { drawer: { open: false }, route: "/" },
               { closeDrawer, navigate, openDrawer }
             ]}
           >

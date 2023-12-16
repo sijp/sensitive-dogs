@@ -1,7 +1,6 @@
 import React from "react";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Container, Dialog, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Container, Dialog } from "@mui/material";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions/index.d";
 
@@ -22,9 +21,6 @@ export function Results() {
   const [selected, setSelected] = React.useState<(typeof results)[0] | null>(
     null
   );
-
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const clearSelection = () => {
     setSelected(null);
