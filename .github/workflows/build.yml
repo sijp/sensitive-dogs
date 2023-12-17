@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: env check
-        run: "echo value: $ENV_TEST"
+        run: "echo value: ${{ secrets.ENV_TEST }}"
 
       - name: env check 2
         run: "echo value: $ENV_TEST_2"
