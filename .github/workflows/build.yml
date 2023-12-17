@@ -48,7 +48,7 @@ jobs:
         run: yarn test
 
       - name: Build
-        with:
+        env:
           IMAGES_FOLDER_ID: ${{ secrets.IMAGES_FOLDER_ID }}
           ARTICLES_FOLDER_ID: ${{ secrets.ARTICLES_FOLDER_ID }}
           DATA_FOLDER_ID: ${{ secrets.DATA_FOLDER_ID }}
