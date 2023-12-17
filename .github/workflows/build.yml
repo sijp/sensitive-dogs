@@ -15,12 +15,6 @@ jobs:
       id-token: "write"
 
     steps:
-      - name: env check
-        run: "echo value: ${{ secrets.ENV_TEST }}"
-
-      - name: env check 2
-        run: "echo value: $ENV_TEST_2"
-
       - uses: "actions/checkout@v3"
 
       - id: "auth"
@@ -54,4 +48,8 @@ jobs:
         run: yarn test
 
       - name: Build
+        with:
+          IMAGES_FOLDER_ID: ${{ secrets.IMAGES_FOLDER_ID }}
+          ARTICLES_FOLDER_ID: ${{ secrets.ARTICLES_FOLDER_ID }}
+          DATA_FOLDER_ID: ${{ secrets.DATA_FOLDER_ID }}
         run: yarn build
