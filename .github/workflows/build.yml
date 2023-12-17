@@ -24,16 +24,28 @@ jobs:
           workload_identity_provider: "${{ secrets.GCS_WORKLOAD_IDENTITY_PROVIDER }}"
           service_account: "${{ secrets.GCS_SERVICE_ACCOUNT }}"
 
+      - name: list creds
+        run: "ls -la /home/runner/work/sensitive-dogs/sensitive-dogs/"
+
       - name: Setup - gcloud / gsutil
         uses: google-github-actions/setup-gcloud@v1
 
+      - name: list creds
+        run: "ls -la /home/runner/work/sensitive-dogs/sensitive-dogs/"
+
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: list creds
+        run: "ls -la /home/runner/work/sensitive-dogs/sensitive-dogs/"
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v2
         with:
           node-version: 18.x
+
+      - name: list creds
+        run: "ls -la /home/runner/work/sensitive-dogs/sensitive-dogs/"
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
