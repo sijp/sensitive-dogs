@@ -24,25 +24,19 @@ jobs:
           workload_identity_provider: "${{ secrets.GCS_WORKLOAD_IDENTITY_PROVIDER }}"
           service_account: "${{ secrets.GCS_SERVICE_ACCOUNT }}"
 
-      - name: list creds
-        run: "ls -la /home/runner/work/sensitive-dogs/sensitive-dogs/"
-
       - name: Setup - gcloud / gsutil
         uses: google-github-actions/setup-gcloud@v1
 
-      - name: list creds
-        run: "ls -la /home/runner/work/sensitive-dogs/sensitive-dogs/"
+      - name: gcloud test
+        run: gcloud secrets versions access "latest" --secret "my-secret"
 
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v2
-        with:
-          node-version: 18.x
+      # - name: Use Node.js 18.x
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: 18.x
 
-      - name: list creds
-        run: "ls -la /home/runner/work/sensitive-dogs/sensitive-dogs/"
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile
 
       # - name: Type check
       #   run: yarn type-check
@@ -53,13 +47,10 @@ jobs:
       # - name: Test
       #   run: yarn test
 
-      - name: list creds
-        run: "ls -la /home/runner/work/sensitive-dogs/sensitive-dogs/"
-
-      - name: Build
-        env:
-          CI: "true"
-          IMAGES_FOLDER_ID: ${{ secrets.IMAGES_FOLDER_ID }}
-          ARTICLES_FOLDER_ID: ${{ secrets.ARTICLES_FOLDER_ID }}
-          DATA_FOLDER_ID: ${{ secrets.DATA_FOLDER_ID }}
-        run: yarn build
+      # - name: Build
+      #   env:
+      #     CI: "true"
+      #     IMAGES_FOLDER_ID: ${{ secrets.IMAGES_FOLDER_ID }}
+      #     ARTICLES_FOLDER_ID: ${{ secrets.ARTICLES_FOLDER_ID }}
+      #     DATA_FOLDER_ID: ${{ secrets.DATA_FOLDER_ID }}
+      #   run: yarn build
