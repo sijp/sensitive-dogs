@@ -2,6 +2,7 @@ import React from "react";
 
 import HomePage from "@sensitive-dogs/home-page";
 import ArticlePage from "@sensitive-dogs/article-page";
+import { Professionals } from "@sensitive-dogs/professionals";
 
 import { ProcessedDataType } from "@sensitive-dogs/data-processor";
 
@@ -41,7 +42,11 @@ export function getPages(data: ProcessedDataType) {
     professionals: [
       `${professionalsTitle} :: ${websiteTitle}`,
       () => {
-        return <div style={{ minHeight: "100vh" }} />;
+        return (
+          <div style={{ minHeight: "100vh" }}>
+            <Professionals />
+          </div>
+        );
       }
     ],
     ...getArticlePages(articles, websiteTitle)

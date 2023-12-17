@@ -61,7 +61,7 @@ describe("navigation", () => {
       const { findByTestId } = render(
         //@ts-ignore
         <DataContext.Provider value={baseData}>
-          <Navigation />
+          <Navigation route="/" />
         </DataContext.Provider>
       );
       const link = await findByTestId("navlink-1");
@@ -76,7 +76,7 @@ describe("navigation", () => {
       const { findByTestId } = render(
         //@ts-ignore
         <DataContext.Provider value={baseData}>
-          <Navigation />
+          <Navigation route="/" />
         </DataContext.Provider>
       );
       const drawer = await findByTestId("drawer");

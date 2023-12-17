@@ -1154,12 +1154,14 @@ exports[`data-processor processData should match snapshot 1`] = `
   ],
   "professionals": [
     {
+      "cities": [],
       "col1": "d11",
-      "col2": "d12",
+      "services": [],
     },
     {
+      "cities": [],
       "col1": "d21",
-      "col2": "d22",
+      "services": [],
     },
   ],
   "team": [

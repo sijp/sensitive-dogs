@@ -1,3 +1,5 @@
+import "material-symbols/outlined.css";
+
 import React from "react";
 import { ProcessedDataType } from "@sensitive-dogs/data-processor";
 import SensitiveThemeProvider from "@sensitive-dogs/sensitive-theme";
@@ -19,7 +21,7 @@ export default function App({ route, data }: AppProps) {
     <DataContext.Provider value={data}>
       <SensitiveThemeProvider>
         <ParallaxContainer id="content">
-          <Navigation />
+          <Navigation route={route} />
           <Router route={route} />
           <Footer />
         </ParallaxContainer>

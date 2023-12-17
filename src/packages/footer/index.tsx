@@ -13,7 +13,7 @@ export default function Footer() {
     <>
       <FixedBackgroundBox
         height="50vh"
-        background="/public/embedded-image-3.jpeg"
+        background="/public/embedded-image-4.jpeg"
         backgroundPosition="10vh"
       ></FixedBackgroundBox>
       <Box
@@ -23,6 +23,7 @@ export default function Footer() {
 
           color: "grey.900",
           padding: 2,
+          paddingBottom: 10,
           minHeight: "15vh",
           justifyContent: "center",
           flexDirection: "column"

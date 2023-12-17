@@ -1,5 +1,5 @@
 import { docs_v1, google } from "googleapis";
-import { GoogleAuth, auth } from "google-auth-library";
+import { GoogleAuth } from "google-auth-library";
 import lodash from "lodash";
 import { Readable } from "stream";
 import { mkdir, readFile, writeFile } from "fs/promises";
@@ -75,15 +75,18 @@ const SCOPES = [
 ];
 
 function authenticate() {
-  const keysEnvVar = process.env["GOOGLE_API_CREDS"];
-  if (!keysEnvVar) {
+  const CI = process.env["CI"];
+  if (CI !== "true") {
     return new GoogleAuth({
       keyFile: "./secrets.json",
       scopes: SCOPES
     });
   }
-  const keys = JSON.parse(keysEnvVar);
-  const client = auth.fromJSON(keys);
+  // const keys = JSON.parse(keysEnvVar);
+  // const client = auth.fromJSON(keys);
+  const client = new GoogleAuth({
+    scopes: SCOPES
+  });
   return client;
 }
 async function cache<T>(name: string, cb: () => T, msg?: string | undefined) {
