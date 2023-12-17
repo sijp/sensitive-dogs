@@ -21,36 +21,37 @@ jobs:
         name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v1"
         with:
+          token_format: "access_token"
           workload_identity_provider: "${{ secrets.GCS_WORKLOAD_IDENTITY_PROVIDER }}"
           service_account: "${{ secrets.GCS_SERVICE_ACCOUNT }}"
 
       - name: Setup - gcloud / gsutil
         uses: google-github-actions/setup-gcloud@v1
 
-      - name: gcloud test
-        run: gcloud secrets versions access "latest" --secret "my-secret"
+      # - name: gcloud test
+      #   run: gcloud secrets versions access "latest" --secret "my-secret"
 
-      # - name: Use Node.js 18.x
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: 18.x
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.x
 
-      # - name: Install dependencies
-      #   run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-      # - name: Type check
-      #   run: yarn type-check
+      - name: Type check
+        run: yarn type-check
 
-      # - name: Lint
-      #   run: yarn lint
+      - name: Lint
+        run: yarn lint
 
-      # - name: Test
-      #   run: yarn test
+      - name: Test
+        run: yarn test
 
-      # - name: Build
-      #   env:
-      #     CI: "true"
-      #     IMAGES_FOLDER_ID: ${{ secrets.IMAGES_FOLDER_ID }}
-      #     ARTICLES_FOLDER_ID: ${{ secrets.ARTICLES_FOLDER_ID }}
-      #     DATA_FOLDER_ID: ${{ secrets.DATA_FOLDER_ID }}
-      #   run: yarn build
+      - name: Build
+        env:
+          CI: "true"
+          IMAGES_FOLDER_ID: ${{ secrets.IMAGES_FOLDER_ID }}
+          ARTICLES_FOLDER_ID: ${{ secrets.ARTICLES_FOLDER_ID }}
+          DATA_FOLDER_ID: ${{ secrets.DATA_FOLDER_ID }}
+        run: yarn build
