@@ -1,10 +1,9 @@
-name: CI
-
-on:
+name: Deploy to Firebase Hosting on merge
+"on":
   push:
-    branches: [main, professionals]
-  pull_request:
-    branches: [main]
+    branches:
+      - main
+      - professionals
 
 jobs:
   build:
@@ -27,9 +26,6 @@ jobs:
 
       - name: Setup - gcloud / gsutil
         uses: google-github-actions/setup-gcloud@v1
-
-      # - name: gcloud test
-      #   run: gcloud secrets versions access "latest" --secret "my-secret"
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v2
@@ -55,3 +51,10 @@ jobs:
           ARTICLES_FOLDER_ID: ${{ secrets.ARTICLES_FOLDER_ID }}
           DATA_FOLDER_ID: ${{ secrets.DATA_FOLDER_ID }}
         run: yarn build
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SENSITIVE_DOGS }}"
+          channelId: live
+          projectId: sensitive-dogs
