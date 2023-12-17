@@ -1,5 +1,5 @@
 import { docs_v1, google } from "googleapis";
-import { GoogleAuth, auth } from "google-auth-library";
+import { GoogleAuth } from "google-auth-library";
 import lodash from "lodash";
 import { Readable } from "stream";
 import { mkdir, readFile, writeFile } from "fs/promises";
