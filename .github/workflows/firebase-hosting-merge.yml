@@ -3,7 +3,6 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - main
-      - professionals
 
 jobs:
   build:
