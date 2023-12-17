@@ -20,16 +20,11 @@ jobs:
         name: "Authenticate to Google Cloud"
         uses: "google-github-actions/auth@v1"
         with:
-          workload_identity_provider: "projects/453562942355/locations/global/workloadIdentityPools/sensitive-dogs/providers/sensitive-dogs"
+          workload_identity_provider: "${{ secrets.GCS_WORKLOAD_IDENTITY_PROVIDER }}"
           service_account: "${{ secrets.GCS_SERVICE_ACCOUNT }}"
 
       - name: Setup - gcloud / gsutil
         uses: google-github-actions/setup-gcloud@v1
-
-      - id: "gcloud-test"
-        name: "gcloud-test"
-        run: |-
-          gcloud secrets versions access "latest" --secret "my-secret"
 
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -50,3 +45,6 @@ jobs:
 
       - name: Test
         run: yarn test
+
+      - name: Build
+        run: yarn build
