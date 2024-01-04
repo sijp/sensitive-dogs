@@ -1,4 +1,5 @@
 import "material-symbols/outlined.css";
+import "leaflet/dist/leaflet.css";
 
 import React from "react";
 import { ProcessedDataType } from "@sensitive-dogs/data-processor";

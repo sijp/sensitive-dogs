@@ -11,11 +11,6 @@ export default function Footer() {
 
   return (
     <>
-      <FixedBackgroundBox
-        height="50vh"
-        background="/public/embedded-image-4.jpeg"
-        backgroundPosition="10vh"
-      ></FixedBackgroundBox>
       <Box
         sx={{
           bgcolor: "primary.dark",
@@ -33,6 +28,12 @@ export default function Footer() {
           <Article articleId="disclaimer" />
         </Container>
       </Box>
+
+      <FixedBackgroundBox
+        height="50vh"
+        background="/public/embedded-image-4.jpeg"
+        backgroundPosition="10vh"
+      ></FixedBackgroundBox>
     </>
   );
 }

@@ -100,7 +100,8 @@ export default function HeaderCTA({
               style={{ fontSize: 28 }}
             />
           }
-          onClick={() => {
+          onClick={(event) => {
+            event.preventDefault();
             buttonLink && navigateFn([buttonLink]);
           }}
         >

@@ -39,8 +39,7 @@ const PARAGRAPH_PROPS: Record<
     style: {
       ...style,
       fontSize: "1.2em",
-      marginTop: 2,
-      marginBottom: 10
+      marginTop: 12
     }
   }),
   HEADING_1: (style) => ({

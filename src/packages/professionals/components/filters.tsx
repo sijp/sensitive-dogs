@@ -23,6 +23,10 @@ import { useLocation } from "../hooks/use-location";
 import { useServices } from "../hooks/use-services";
 import { useFiltersButton } from "../hooks/use-filters-button";
 
+interface FiltersProps {
+  onMapClick: () => void;
+}
+
 function ListToggle({
   id,
   label,
@@ -83,7 +87,8 @@ function ListToggle({
   );
 }
 
-export function Filters() {
+//@ts-ignore
+export function Filters({ onMapClick }: FiltersProps) {
   const [activeLocation, setLocation] = useLocation();
   const [activeServices, addService, removeService] = useServices();
 
@@ -152,14 +157,18 @@ export function Filters() {
               sx={{ width: "100%" }}
             >
               <option value="">הכל</option>
-              {Object.entries(locations).map(([locationId, location]) => (
-                <option
-                  key={`drawer-location-${locationId}`}
-                  value={locationId}
-                >
-                  {location.label}
-                </option>
-              ))}
+              {Object.entries(locations)
+                .sort(([_locationIdA, locationA], [_locationIdB, locationB]) =>
+                  locationA.label > locationB.label ? 1 : -1
+                )
+                .map(([locationId, location]) => (
+                  <option
+                    key={`drawer-location-${locationId}`}
+                    value={locationId}
+                  >
+                    {location.label}
+                  </option>
+                ))}
             </NativeSelect>
           </ListItem>
         </List>
