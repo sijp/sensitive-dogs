@@ -155,6 +155,7 @@ export function Filters({ onMapClick }: FiltersProps) {
                   <option
                     key={`drawer-location-${locationId}`}
                     value={locationId}
+                    selected={activeLocation === locationId}
                   >
                     {location.label}
                   </option>
