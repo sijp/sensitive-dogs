@@ -140,7 +140,7 @@ export function Filters({ onMapClick }: FiltersProps) {
             }
           >
             <NativeSelect
-              defaultValue={activeLocation}
+              value={activeLocation || ""}
               onChange={(event) => {
                 setLocation(event.target.value);
               }}
@@ -155,7 +155,6 @@ export function Filters({ onMapClick }: FiltersProps) {
                   <option
                     key={`drawer-location-${locationId}`}
                     value={locationId}
-                    selected={activeLocation === locationId}
                   >
                     {location.label}
                   </option>

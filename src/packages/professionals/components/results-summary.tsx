@@ -20,7 +20,15 @@ export function ResultsSummary() {
   const [activeServices, _, removeService] = useServices();
 
   return (
-    <Container maxWidth="lg" sx={(theme) => ({ padding: theme.spacing(2) })}>
+    <Container
+      maxWidth="lg"
+      sx={(theme) => ({
+        padding: theme.spacing(2),
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between"
+      })}
+    >
       <Typography variant="subtitle1">
         <NonMinifiedText
           text={
@@ -37,6 +45,7 @@ export function ResultsSummary() {
               <Chip
                 key={`result-summary-service${index}`}
                 label={services[service].label}
+                size="small"
                 color="primary"
                 icon={<SensitiveSymbol iconName={services[service].icon} />}
                 sx={(theme) => ({
@@ -56,9 +65,11 @@ export function ResultsSummary() {
         ) : null}
         {activeLocation ? (
           <>
+            <br />
             <NonMinifiedText text=" באיזור המגורים" />
             <Chip
               label={locations[activeLocation].label}
+              size="small"
               color="primary"
               sx={(theme) => ({
                 marginLeft: theme.spacing(0.5),
@@ -73,19 +84,19 @@ export function ResultsSummary() {
             />
           </>
         ) : null}
-        <Fab
-          variant="extended"
-          size="medium"
-          color="secondary"
-          sx={{ float: "right" }}
-          onClick={() => {
-            setOpenFilters(true);
-          }}
-        >
-          <SensitiveSymbol iconName={filtersIcon} style={{ fontSize: 28 }} />
-          {filtersLabel}
-        </Fab>
       </Typography>
+      <Fab
+        variant="extended"
+        size="medium"
+        color="secondary"
+        onClick={() => {
+          setOpenFilters(true);
+        }}
+        sx={{ minWidth: 100 }}
+      >
+        <SensitiveSymbol iconName={filtersIcon} style={{ fontSize: 28 }} />
+        {filtersLabel}
+      </Fab>
     </Container>
   );
 }
