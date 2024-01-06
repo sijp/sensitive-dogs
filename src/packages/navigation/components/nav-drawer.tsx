@@ -127,6 +127,7 @@ export default function NavDrawer() {
       open={open}
       onClose={actions.closeDrawer}
       data-testid="drawer"
+      keepMounted
     >
       <List>
         {menu.map(({ id, text, icon, type, url }) =>
