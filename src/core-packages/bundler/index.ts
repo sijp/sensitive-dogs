@@ -2,6 +2,7 @@ import Webpack from "webpack";
 
 import TerserPlugin from "terser-webpack-plugin";
 import WebpackDevServer from "webpack-dev-server";
+const CopyPlugin = require("copy-webpack-plugin");
 
 import webpackConfig from "../../../webpack.config";
 
@@ -27,6 +28,12 @@ async function getWebpackConfiguration(shouldHydrate: boolean) {
       "process.env.__HYDRATE__": shouldHydrate
     }),
     new StreamDownloaderPlugin(images),
+    new CopyPlugin({
+      patterns: [
+        { from: __dirname + "/public/logo.jpg", to: "./" },
+        { from: __dirname + "/public/preview.jpg", to: "./" }
+      ]
+    }),
     ...webpackStaticPages((route: string) => render(route, data))(pageData)
   ];
 
