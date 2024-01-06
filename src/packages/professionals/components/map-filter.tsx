@@ -1,4 +1,13 @@
 import React from "react";
+import { useTheme } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { useLocation } from "../hooks/use-location";
 import { locations } from "../config";
 import { Polygon } from "leaflet";
@@ -10,8 +19,10 @@ interface UseLeafletProps {
 }
 
 interface MapFilterProps {
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
+  open: boolean;
+  onClose: () => void;
 }
 
 async function initMap(id: string) {
@@ -91,7 +102,9 @@ function useLeaflet({ id, activeLocation, onSelect }: UseLeafletProps) {
   }, [map, activeLocation, polygons]);
 }
 
-export function MapFilter({ width, height }: MapFilterProps) {
+export function MapFilter({ width, height, open, onClose }: MapFilterProps) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [activeLocation, setLocation] = useLocation();
   useLeaflet({
     id: "map",
@@ -101,5 +114,40 @@ export function MapFilter({ width, height }: MapFilterProps) {
     }
   });
 
-  return <div id="map" style={{ width, height }}></div>;
+  return (
+    <Dialog
+      fullScreen={fullScreen}
+      open={open}
+      onClose={onClose}
+      aria-labelledby="responsive-dialog-title"
+      keepMounted
+    >
+      <DialogTitle id="responsive-dialog-title">
+        {"סימון איזור מגורים במפה"}
+      </DialogTitle>
+      <DialogContent>
+        <div
+          id="map"
+          style={{ width: fullScreen ? "100%" : width, height }}
+        ></div>
+      </DialogContent>
+      <DialogActions
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          padding: 1,
+          alignItems: "stretch"
+        }}
+      >
+        <Button
+          autoFocus
+          onClick={onClose}
+          variant="contained"
+          color="secondary"
+        >
+          שמירה
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
 }

@@ -7,7 +7,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  SwipeableDrawer
+  Drawer
 } from "@mui/material";
 
 import { DataContext } from "@sensitive-dogs/app/App";
@@ -116,22 +116,16 @@ export default function NavDrawer() {
   const data = React.useContext(DataContext);
   const [state, actions] = React.useContext(MenuContext);
   const { open } = state.drawer;
-  const iOS =
-    typeof navigator !== "undefined" &&
-    /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   if (!data) return null;
 
   const { menu, articlesMenu } = data;
 
   return (
-    <SwipeableDrawer
+    <Drawer
       anchor="left"
       open={open}
       onClose={actions.closeDrawer}
-      onOpen={actions.openDrawer}
-      disableBackdropTransition={!iOS}
-      disableDiscovery={iOS}
       data-testid="drawer"
     >
       <List>
@@ -167,6 +161,6 @@ export default function NavDrawer() {
           )
         )}
       </List>
-    </SwipeableDrawer>
+    </Drawer>
   );
 }
