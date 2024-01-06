@@ -115,7 +115,29 @@ export function ResultCard({
               }}
               image={`/public/${picture}`}
             />
-          ) : null}
+          ) : (
+            <Box
+              sx={(theme) => ({
+                height: fullscreen ? "30vh" : 150,
+                background: `linear-gradient(180deg, ${theme.palette.grey[100]}, ${theme.palette.grey[200]} )`,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center"
+              })}
+            >
+              <Typography
+                variant="h1"
+                sx={(theme) => ({
+                  color: theme.palette.grey[500]
+                })}
+              >
+                <SensitiveSymbol
+                  iconName={allServices[services[0]].icon}
+                  style={{ fontSize: "inherit", paddingTop: 4 }}
+                />
+              </Typography>
+            </Box>
+          )}
 
           <Box sx={{ display: "flex", alignItems: "stretch" }}>
             <CardHeader
@@ -130,7 +152,7 @@ export function ResultCard({
                   width: "30%",
                   display: "flex",
                   flexDirection: "row-reverse",
-                  alignItems: "center",
+                  alignItems: fullscreen ? "center" : "start",
                   padding: 2
                 }}
               >

@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   Button,
-  SwipeableDrawer,
+  Drawer,
   List,
   ListItem,
   ListItemButton,
@@ -87,7 +87,6 @@ function ListToggle({
   );
 }
 
-//@ts-ignore
 export function Filters({ onMapClick }: FiltersProps) {
   const [activeLocation, setLocation] = useLocation();
   const [activeServices, addService, removeService] = useServices();
@@ -99,19 +98,10 @@ export function Filters({ onMapClick }: FiltersProps) {
       maxWidth="lg"
       sx={(theme) => ({ padding: theme.spacing(1), textAlign: "right" })}
     >
-      <Button
-        color="secondary"
-        variant="outlined"
-        onClick={() => setOpen(true)}
-        startIcon={<SensitiveSymbol iconName="filter_alt" />}
-      >
-        סינון
-      </Button>
-      <SwipeableDrawer
+      <Drawer
         anchor="right"
         open={open}
         onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
         data-testid="filters-drawer"
       >
         <List sx={{ minWidth: "40vw" }}>
@@ -144,13 +134,13 @@ export function Filters({ onMapClick }: FiltersProps) {
           </ListItem>
           <ListItem
             secondaryAction={
-              <IconButton edge="end" aria-label={"map"}>
+              <IconButton edge="end" aria-label={"map"} onClick={onMapClick}>
                 <SensitiveSymbol iconName={"map"} />
               </IconButton>
             }
           >
             <NativeSelect
-              defaultValue={activeLocation}
+              value={activeLocation || ""}
               onChange={(event) => {
                 setLocation(event.target.value);
               }}
@@ -189,7 +179,7 @@ export function Filters({ onMapClick }: FiltersProps) {
             שמירה
           </Button>
         </Box>
-      </SwipeableDrawer>
+      </Drawer>
     </Container>
   );
 }
