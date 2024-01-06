@@ -23,5 +23,8 @@
     "terser-webpack-plugin": "^5.3.6",
     "webpack": "^5.75.0",
     "webpack-dev-server": "^4.11.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0"
   }
 }
