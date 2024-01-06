@@ -25,7 +25,8 @@ function getPages(
         },
         templateParameters: {
           content: render(page),
-          title
+          title,
+          path: page === "index" ? "/" : page
         },
         favicon: path.resolve(__dirname, "./public/favicon.ico"),
         filename: `${page === "index" ? "." : page.toLowerCase()}/index.html`,
