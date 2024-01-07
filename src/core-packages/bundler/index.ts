@@ -31,7 +31,8 @@ async function getWebpackConfiguration(shouldHydrate: boolean) {
     new CopyPlugin({
       patterns: [
         { from: __dirname + "/public/logo.jpg", to: "./" },
-        { from: __dirname + "/public/preview.jpg", to: "./" }
+        { from: __dirname + "/public/preview.jpg", to: "./" },
+        { from: __dirname + "/public/404.html", to: "./404.html" }
       ]
     }),
     ...webpackStaticPages((route: string) => render(route, data))(pageData)

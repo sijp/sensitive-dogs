@@ -105,13 +105,11 @@ export default function Router({ route: initialRoute = "/" }: RouterProps) {
           .getElementById("content")
           ?.scrollTo({ top: 0, behavior: "smooth" });
       }
-    }, 10);
+    }, 100);
   }, [route, hash]);
 
-  const [configuredTitle, Page] = pages[route] || [
-    "Not Found",
-    () => <div>Page not found</div>
-  ];
+  const [configuredTitle, Page] = pages[route] ||
+    pages["index"] || ["Not Found", () => <div>Page not found</div>];
   const title = configuredTitle || eventTitle;
   useTitleEffect(title, eventRoute.split("#")[0], hash, preventPushState);
 
