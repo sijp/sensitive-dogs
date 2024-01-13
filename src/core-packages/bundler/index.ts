@@ -12,6 +12,7 @@ import { getPages } from "@sensitive-dogs/pages";
 import { processData } from "@sensitive-dogs/data-processor";
 import { StreamDownloaderPlugin } from "./webpack-stream-downloader-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 async function getWebpackConfiguration(shouldHydrate: boolean) {
   const pdata = await processData();
@@ -32,10 +33,28 @@ async function getWebpackConfiguration(shouldHydrate: boolean) {
       patterns: [
         { from: __dirname + "/public/logo.jpg", to: "./" },
         { from: __dirname + "/public/preview.jpg", to: "./" },
-        { from: __dirname + "/public/404.html", to: "./404.html" }
+        { from: __dirname + "/public/404.html", to: "./404.html" },
+        { from: __dirname + "/public/robots.txt", to: "./robots.txt" }
       ]
     }),
-    ...webpackStaticPages((route: string) => render(route, data))(pageData)
+    ...webpackStaticPages((route: string) => render(route, data))(pageData),
+    new HtmlWebpackPlugin({
+      filename: "./sitemap.xml",
+      inject: false,
+      templateContent: `
+      <?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        ${pageData
+          .map(
+            ([page]) =>
+              `<url><loc>https://www.sensitive-dogs.co.il/${
+                page === "index" ? "" : page
+              }</loc></url>`
+          )
+          .join("\n")}
+      </urlset>
+      `
+    })
   ];
 
   return {
