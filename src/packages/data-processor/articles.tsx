@@ -140,13 +140,15 @@ export function parseDocument(
           ({
             textRun = { textStyle: {} },
             inlineObjectElement = { textStyle: {} },
-            horizontalRule
+            horizontalRule,
+            richLink
           }) => {
             const { content, textStyle = {} } = textRun;
             const { italic, underline, bold, link: textLink } = textStyle;
             const { inlineObjectId, textStyle: inlineTextStyle } =
               inlineObjectElement;
             const { link: imageLink } = inlineTextStyle || {};
+            const highQualityImageId = richLink?.richLinkProperties?.title;
 
             return maybeConvertToInteractive({
               text: content,
@@ -154,7 +156,7 @@ export function parseDocument(
               underline,
               bold,
               link: (textLink || imageLink)?.url,
-              image: imagesIdMapper[inlineObjectId || ""],
+              image: highQualityImageId || imagesIdMapper[inlineObjectId || ""],
               floatImages: positionedObjectIds?.map((id) => imagesIdMapper[id]),
               horizontalLine: !!horizontalRule
             });
