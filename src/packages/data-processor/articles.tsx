@@ -64,7 +64,7 @@ function maybeConvertToInteractive(element: ArticleElement): ArticleElement {
       link: `https://open.spotify.com/embed/show/${spotifyShow[1]}`,
       interactive: "spotify-show"
     } : null)
-  }
+  };
 }
 
 function groupBulletedLists(paragraphs: RawParagraph[]) {
