@@ -6,6 +6,7 @@ import { ArticleImageElement } from "./components/article-image-element";
 import { ArticleHorizontalLineElement } from "./components/article-horizontal-line-element";
 import { ArticleYoutubeElement } from "./components/article-youtube-element";
 import { ArticleFloatingImageElement } from "./components/article-floating-image-element";
+import { ArticleSpotifyElement } from "./components/article-spotify-element";
 
 interface ArticleProps {
   articleId: string;
@@ -26,7 +27,7 @@ export interface ArticleElementType {
   image: string | null | undefined;
   floatImages: string[] | null | undefined;
   horizontalLine: boolean | null | undefined;
-  interactive?: string | null | undefined;
+  interactive?: "youtube" | "spotify" | "spotify-show" | null | undefined;
 }
 
 const PARAGRAPH_PROPS: Record<
@@ -111,26 +112,28 @@ function defaultElementParser(element: ArticleElementType) {
 
   return interactive === "youtube" && link ? (
     <ArticleYoutubeElement link={link} />
-  ) : horizontalLine ? (
-    <ArticleHorizontalLineElement />
-  ) : image ? (
-    <Linkify>
-      <ArticleImageElement src={image} />
-    </Linkify>
-  ) : floatImages?.length ? (
-    <Linkify>
-      <ArticleFloatingImageElement src={floatImages[0]} />
-    </Linkify>
-  ) : text ? (
-    <Linkify>
-      <ArticleTextElement
-        text={text}
-        bold={!!bold}
-        underline={!!underline}
-        italic={!!italic}
-      />
-    </Linkify>
-  ) : null;
+  ) : (interactive === "spotify" || interactive === "spotify-show") && link ? (
+    <ArticleSpotifyElement link={link} />)
+    : horizontalLine ? (
+      <ArticleHorizontalLineElement />
+    ) : image ? (
+      <Linkify>
+        <ArticleImageElement src={image} />
+      </Linkify>
+    ) : floatImages?.length ? (
+      <Linkify>
+        <ArticleFloatingImageElement src={floatImages[0]} />
+      </Linkify>
+    ) : text ? (
+      <Linkify>
+        <ArticleTextElement
+          text={text}
+          bold={!!bold}
+          underline={!!underline}
+          italic={!!italic}
+        />
+      </Linkify>
+    ) : null;
 }
 
 export default function Article({

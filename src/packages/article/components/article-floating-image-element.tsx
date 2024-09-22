@@ -7,6 +7,7 @@ interface ArticleImageElementProps {
 const Image = styled("img")(({ theme }) => ({
   float: "left",
   margin: theme.spacing(2),
+  marginTop: theme.spacing(1),
   marginLeft: 0
 }));
 
