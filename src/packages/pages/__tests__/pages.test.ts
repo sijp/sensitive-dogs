@@ -27,7 +27,8 @@ describe("pages", () => {
         button_link: "",
         button_text: "",
         logo: "",
-        text: ""
+        text: "",
+        footer: ""
       },
       images: [],
       professionals: [],

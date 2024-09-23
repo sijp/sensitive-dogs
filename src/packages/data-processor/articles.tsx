@@ -10,7 +10,7 @@ interface ArticleElement {
   image: string | null | undefined;
   floatImages: string[] | null | undefined;
   horizontalLine: boolean | null | undefined;
-  interactive?: string | null | undefined;
+  interactive?: "youtube" | "spotify" | "spotify-show" | null | undefined;
 }
 
 interface RawParagraph {
@@ -41,18 +41,30 @@ interface IndexedList extends List {
 
 type ParsedDocument = Array<Paragraph | List> | null;
 
-function maybeConvertToInteractive(element: ArticleElement) {
+function maybeConvertToInteractive(element: ArticleElement): ArticleElement {
   const youtube = (element.text || "").match(
     /https:\/\/www\.youtube\.com\/watch\?v=([\w-]+)/
   );
-  if (youtube) {
-    return {
-      ...element,
+  const spotify = (element.text || "").match(
+    /https:\/\/open\.spotify\.com\/episode\/([\w-]+)/
+  );
+  const spotifyShow = (element.text || "").match(
+    /https:\/\/open\.spotify\.com\/show\/([\w-]+)/
+  );
+
+  return {
+    ...element,
+    ...(youtube ? {
       link: `https://www.youtube.com/embed/${youtube[1]}`,
       interactive: "youtube"
-    };
-  }
-  return element;
+    } : spotify ? {
+      link: `https://open.spotify.com/embed/episode/${spotify[1]}`,
+      interactive: "spotify"
+    } : spotifyShow ? {
+      link: `https://open.spotify.com/embed/show/${spotifyShow[1]}`,
+      interactive: "spotify-show"
+    } : null)
+  };
 }
 
 function groupBulletedLists(paragraphs: RawParagraph[]) {
@@ -134,8 +146,8 @@ export function parseDocument(
         bulletType: listProperties?.glyphSymbol
           ? "ul"
           : listProperties?.glyphType
-          ? "ol"
-          : undefined,
+            ? "ol"
+            : undefined,
         elements: elements?.map(
           ({
             textRun = { textStyle: {} },

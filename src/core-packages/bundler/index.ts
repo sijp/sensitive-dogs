@@ -64,7 +64,13 @@ async function getWebpackConfiguration(shouldHydrate: boolean) {
 }
 
 async function build() {
-  const config = await getWebpackConfiguration(true);
+  let config;
+  try {
+    config = await getWebpackConfiguration(true);
+  } catch(e) {
+    console.error("Error setting up webpack:", e);
+    return;
+  }
   const compiler = Webpack({
     ...config,
     plugins: [
@@ -95,7 +101,13 @@ async function build() {
 }
 
 const runServer = async (shouldHydrate: boolean) => {
-  const config = await getWebpackConfiguration(shouldHydrate);
+  let config;
+  try {
+    config = await getWebpackConfiguration(shouldHydrate);
+  } catch(e) {
+    console.error("Error setting up webpack:", e);
+    return;
+  }
   const compiler = Webpack({
     ...config,
     mode: "development"

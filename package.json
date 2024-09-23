@@ -7,7 +7,7 @@
   "author": "Shlomi Israely <sijproject@gmail.com>",
   "license": "GPLv3",
   "engines": {
-    "node": "^18.12"
+    "node": "^20.10"
   },
   "private": true,
   "scripts": {

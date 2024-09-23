@@ -7,7 +7,8 @@ import { FixedBackgroundBox } from "@sensitive-dogs/common";
 export default function Footer() {
   const data = React.useContext(DataContext);
 
-  if (!data) return <></>;
+  if (!data) return null;
+  const { homePage } = data;
 
   return (
     <>
@@ -31,7 +32,7 @@ export default function Footer() {
 
       <FixedBackgroundBox
         height="50vh"
-        background="/public/embedded-image-4.jpeg"
+        background={`/public/${homePage.footer}`}
         backgroundPosition="10vh"
       ></FixedBackgroundBox>
     </>

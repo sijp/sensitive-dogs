@@ -54,6 +54,7 @@ export interface HomePageData {
   button_link: string | null;
   button_icon: string | null;
   title: string | null;
+  footer: string | null;
 }
 
 const TEAM_TABLE_NAME = "team";
