@@ -5,11 +5,13 @@ import { DataContext } from "@sensitive-dogs/app/App";
 
 import { useLocation } from "../hooks/use-location";
 import { useServices } from "../hooks/use-services";
+import { useRemoteLocation } from "./use-remote-location";
 
 export function useFilteredResults() {
   const data = React.useContext(DataContext);
   const [activeLocation] = useLocation();
   const [activeServices] = useServices();
+  const [isRemote] = useRemoteLocation();
 
   if (!data) return [];
 
@@ -24,7 +26,10 @@ export function useFilteredResults() {
 
   const results = lodash(data.professionals)
     .filter(
-      ({ cities }) => activeLocation === null || cities.includes(activeLocation)
+      ({ cities, remote }) =>
+        activeLocation === null ||
+        cities.includes(activeLocation) ||
+        (isRemote === true && remote === true)
     )
     .filter(
       ({ services }) =>

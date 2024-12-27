@@ -13,6 +13,7 @@ import filter_alt from "@mui/icons-material/FilterAlt";
 import favorite from "@mui/icons-material/Favorite";
 import local_police from "@mui/icons-material/LocalPolice";
 import shield from "@mui/icons-material/Shield";
+import video_camera_front from "@mui/icons-material/VideoCameraFront";
 
 const materialIcons: Record<string, typeof facebook> = {
   facebook,
@@ -25,7 +26,8 @@ const materialIcons: Record<string, typeof facebook> = {
   filter_alt,
   favorite,
   local_police,
-  shield
+  shield,
+  video_camera_front
 };
 export function SensitiveSymbol({
   iconName,
