@@ -124,7 +124,7 @@ export function Filters() {
           onChange={createAccordionChangeHandler("panel1")}
         >
           <AccordionSummary
-            expandIcon={<SensitiveSymbol iconName={"keyboard_arrow_up"} />}
+            expandIcon={<SensitiveSymbol iconName={"keyboard_arrow_down"} />}
             aria-controls="panel1-content"
             id="panel1-header"
           >
