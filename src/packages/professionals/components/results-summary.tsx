@@ -8,6 +8,7 @@ import { useServices } from "../hooks/use-services";
 import { services, locations } from "../config";
 import { SensitiveSymbol } from "@sensitive-dogs/icons";
 import { NonMinifiedText } from "@sensitive-dogs/common";
+import { useRemoteLocation } from "../hooks/use-remote-location";
 
 export function ResultsSummary() {
   const [
@@ -18,6 +19,7 @@ export function ResultsSummary() {
   const [results] = useFilteredResults();
   const [activeLocation, setLocation] = useLocation();
   const [activeServices, _, removeService] = useServices();
+  const [isRemote, setIsRemote] = useRemoteLocation();
 
   return (
     <Container
@@ -62,7 +64,8 @@ export function ResultsSummary() {
               />
             ))}
           </>
-        ) : null}
+        ) : (<>
+            <NonMinifiedText text=" עבור כל סוגי השירות" /></>)}
         {activeLocation ? (
           <>
             <br />
@@ -80,6 +83,32 @@ export function ResultsSummary() {
               }}
               onDelete={() => {
                 setLocation("");
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <NonMinifiedText text=" בכל הארץ" />
+          </>
+        )}
+        {isRemote ? (
+          <>
+            <NonMinifiedText text=" כולל" />
+            <Chip
+              label={"שירות אונליין"}
+              size="small"
+              color="primary"
+              icon={<SensitiveSymbol iconName={"video_camera_front"} />}
+              sx={(theme) => ({
+                marginLeft: theme.spacing(0.5),
+                marginRight: theme.spacing(0.5),
+                paddingLeft: theme.spacing(1)
+              })}
+              onClick={() => {
+                setIsRemote(false);
+              }}
+              onDelete={() => {
+                setIsRemote(false);
               }}
             />
           </>

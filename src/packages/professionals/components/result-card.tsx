@@ -39,6 +39,7 @@ interface ResultCardProps {
   fullscreen: boolean;
   activeServices: string[] | null;
   activeLocation: string | null;
+  showRemote: boolean | null;
 }
 
 const Tag = styled(Chip)({
@@ -54,7 +55,8 @@ export function ResultCard({
   clearSelection,
   fullscreen,
   activeLocation,
-  activeServices
+  activeServices,
+  showRemote
 }: ResultCardProps) {
   const {
     id,
@@ -257,6 +259,34 @@ export function ResultCard({
               ) : null}
             </Box>
             <Box>
+              {showRemote ? (
+                <Tag
+                  key={`professional-card-${id}-remote`}
+                  {...(fullscreen
+                    ? {
+                        icon: (
+                          <SensitiveSymbol
+                            iconName="video_camera_front"
+                            style={{ margin: 4 }}
+                          />
+                        )
+                      }
+                    : {})}
+                  label={
+                    fullscreen ? (
+                      "שירות אונליין"
+                    ) : (
+                      <SensitiveSymbol
+                        iconName="video_camera_front"
+                        style={{ margin: 4 }}
+                      />
+                    )
+                  }
+                  color="primary"
+                  size="small"
+                  sx={{ margin: "2px", padding: "1px" }}
+                />
+              ) : null}
               {cities.slice(0, fullscreen ? 100 : MAX_CITIES).map((city) => (
                 <Tag
                   key={`professional-card-${id}-city-${city}`}

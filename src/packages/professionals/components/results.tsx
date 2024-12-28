@@ -7,6 +7,7 @@ import { TransitionProps } from "@mui/material/transitions/index.d";
 import { useFilteredResults } from "../hooks/use-filtered-results";
 
 import { ResultCard } from "./result-card";
+import { useRemoteLocation } from "../hooks/use-remote-location";
 
 const Transition = React.forwardRef(function Transition(
   props: React.PropsWithChildren<TransitionProps>,
@@ -21,6 +22,7 @@ export function Results() {
   const [selected, setSelected] = React.useState<(typeof results)[0] | null>(
     null
   );
+  const [isRemote] = useRemoteLocation();
 
   const clearSelection = () => {
     setSelected(null);
@@ -32,14 +34,13 @@ export function Results() {
         {results.map((result) => (
           <Grid key={`professional-card-${result.id}`} xs={6} sm={4}>
             <ResultCard
-              {...{
-                result,
-                fullscreen: false,
-                activeLocation,
-                activeServices,
-                clearSelection,
-                onSelect: () => setSelected(result)
-              }}
+              result={result}
+              fullscreen={false}
+              activeLocation={activeLocation}
+              activeServices={activeServices}
+              clearSelection={clearSelection}
+              onSelect={() => setSelected(result)}
+              showRemote={isRemote && result.remote}
             />
           </Grid>
         ))}
@@ -62,13 +63,12 @@ export function Results() {
       >
         {selected ? (
           <ResultCard
-            {...{
-              result: selected,
-              fullscreen: true,
-              activeLocation,
-              activeServices,
-              clearSelection
-            }}
+            result={selected}
+            fullscreen={true}
+            activeLocation={activeLocation}
+            activeServices={activeServices}
+            clearSelection={clearSelection}
+            showRemote={isRemote && selected.remote}
           />
         ) : null}
       </Dialog>
