@@ -78,7 +78,7 @@ function authenticate() {
   const CI = process.env["CI"];
   if (CI !== "true") {
     return new GoogleAuth({
-      keyFile: "./secrets.json",
+      keyFile: process.env.SECRET_FILE_PATH || "./secrets.json",
       scopes: SCOPES
     });
   }
@@ -143,16 +143,19 @@ async function cacheStream(
 }
 
 export default function GoogleAdapter() {
+
+  
+  
   const client = authenticate();
   const drive = google.drive({ version: "v3", auth: client });
   const docs = google.docs({ version: "v1", auth: client });
   const sheets = google.sheets({ version: "v4", auth: client });
-
-  if (!process.env["ARTICLES_FOLDER_ID"])
+  
+  if (process.env["ARTICLES_FOLDER_ID"] === undefined)
     throw "Missing env ARTICLES_FOLDER_ID";
-  if (!process.env["IMAGES_FOLDER_ID"]) throw "Missing env IMAGES_FOLDER_ID";
-  if (!process.env["DATA_FOLDER_ID"]) throw "Missing env DATA_FOLDER_ID";
-
+  if (process.env["IMAGES_FOLDER_ID"] === undefined) throw "Missing env IMAGES_FOLDER_ID";
+  if (process.env["DATA_FOLDER_ID"] === undefined) throw "Missing env DATA_FOLDER_ID";
+  
   const articleRoot: FolderFileData = {
     id: process.env["ARTICLES_FOLDER_ID"],
     description: "root articles folder",

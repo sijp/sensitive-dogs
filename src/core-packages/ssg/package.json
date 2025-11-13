@@ -1,0 +1,18 @@
+{
+  "name": "ssg",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone Vite-based SSG / dev tooling (Vite only, app lives outside this folder)",
+  "scripts": {
+    "ssg:dev": "vite --config ./vite.config.ts --configLoader runner",
+    "ssg:build": "vite build --config ./vite.config.ts",
+    "ssg:preview": "vite preview --config ./vite.config.ts"
+  },
+  "devDependencies": {
+    "vite": "^7.2.2",
+    "@vitejs/plugin-react": "^5.1.1",
+    "typescript": "^5.2.2",
+    "@sensitive-dogs/data-processor":"*",
+    "dotenv":"^17.2.3"
+  }
+}

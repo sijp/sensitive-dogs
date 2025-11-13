@@ -9,6 +9,8 @@ import Footer from "@sensitive-dogs/footer";
 import Navigation from "@sensitive-dogs/navigation";
 import Router from "./Router";
 
+import { Router as Wouter } from "wouter";
+
 interface AppProps {
   route?: string;
   // eslint-disable-next-line
@@ -19,14 +21,16 @@ export const DataContext = React.createContext<ProcessedDataType | null>(null);
 
 export default function App({ route, data }: AppProps) {
   return (
-    <DataContext.Provider value={data}>
-      <SensitiveThemeProvider>
-        <ParallaxContainer id="content">
-          <Navigation route={route} />
-          <Router route={route} />
-          <Footer />
-        </ParallaxContainer>
-      </SensitiveThemeProvider>
-    </DataContext.Provider>
+    <Wouter ssrPath={route || "index"}>
+      <DataContext.Provider value={data}>
+        <SensitiveThemeProvider>
+          <ParallaxContainer id="content">
+            <Navigation route={route} />
+            <Router route={route} />
+            <Footer />
+          </ParallaxContainer>
+        </SensitiveThemeProvider>
+      </DataContext.Provider>
+    </Wouter>
   );
 }
