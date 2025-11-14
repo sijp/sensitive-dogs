@@ -1,14 +1,20 @@
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+
+import react from "@vitejs/plugin-react-swc";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-import { defineConfig } from "vite";
+import { defineConfig, UserConfig } from "vite";
 import path from "path";
 import fs from "fs";
 
 import { processData } from "../../packages/data-processor";
+import { streamDownloaderPlugin } from "./stream-downloader-plugin";
 
 /**
  * Minimal Vite config for core-packages/ssg.
@@ -19,11 +25,14 @@ import { processData } from "../../packages/data-processor";
  */
 
 const defaultAppRelative = "../../src";
-const appRoot = process.env.SSG_APP_ROOT
-  ? path.resolve(__dirname, process.env.SSG_APP_ROOT)
+const appRoot = process.env["SSG_APP_ROOT"]
+  ? path.resolve(__dirname, process.env["SSG_APP_ROOT"])
   : path.resolve(__dirname, defaultAppRelative);
 
 const indexHtmlPath = path.resolve(appRoot, "index.html");
+const materialSymbolsDir = dirname(
+  require.resolve("material-symbols/package.json")
+);
 
 export default defineConfig(async () => {
   // Fail fast if the app root is misconfigured
@@ -35,14 +44,12 @@ export default defineConfig(async () => {
   }
 
   // dynamically import @vitejs/plugin-react (ESM-only) if available
-  const reactPkg = await import("@vitejs/plugin-react").catch(() => null);
-  const react = reactPkg && (reactPkg.default || reactPkg);
 
   const { images, ...data } = await processData();
 
   return {
     root: appRoot,
-    plugins: react ? [react()] : [],
+    plugins: [react(), streamDownloaderPlugin(images)],
     define: {
       "process.env.__DATA__": JSON.stringify(data)
     },
@@ -58,14 +65,29 @@ export default defineConfig(async () => {
       open: false,
       fs: {
         // allow serving files from the app root (outside this package)
-        allow: [appRoot, path.resolve(__dirname)]
+        allow: [
+          appRoot,
+          path.resolve(__dirname),
+          path.resolve(materialSymbolsDir)
+        ]
       }
     },
     build: {
       // keep build artifacts inside this package so ssg remains self-contained
       outDir: path.resolve(__dirname, "dist"),
       emptyOutDir: true,
-      sourcemap: true
+      sourcemap: true,
+      assetsInlineLimit: 0
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        loader: {
+          ".png": "file",
+          ".jpg": "file",
+          ".jpeg": "file",
+          ".svg": "file"
+        }
+      }
     }
-  };
+  } as UserConfig;
 });

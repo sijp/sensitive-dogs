@@ -12,6 +12,8 @@
   "private": true,
   "scripts": {
     "ssg-dev": "SSG_APP_ROOT=../../packages/app dotenv -e ./.env yarn --cwd . workspace ssg ssg:dev",
+    "ssg-preview": "SSG_APP_ROOT=../../packages/app dotenv -e ./.env yarn --cwd . workspace ssg ssg:preview",
+    "ssg-build": "SSG_APP_ROOT=../../packages/app dotenv -e ./.env yarn --cwd . workspace ssg ssg:build",
     "babel-run": "node src/core-packages/babel-run/index.js",
     "dev": "yarn babel-run bundler dev",
     "dev:no-hydrate": "yarn babel-run bundler dev --no-hydrate",
