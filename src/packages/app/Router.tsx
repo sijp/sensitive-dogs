@@ -3,6 +3,7 @@ import React from "react";
 import { useListener, useDispatch } from "@sensitive-dogs/event-bus";
 import { getPages } from "@sensitive-dogs/pages";
 import { DataContext } from "@sensitive-dogs/app/App";
+import { Route, Switch } from "wouter";
 
 interface RouterProps {
   route: string | undefined;
@@ -84,7 +85,7 @@ function useTitleEffect(
   }, []);
 }
 
-export default function Router({ route: initialRoute = "/" }: RouterProps) {
+export function RouterOld({ route: initialRoute = "/" }: RouterProps) {
   const [eventRoute, eventTitle, preventPushState] = useListener<
     [string, string, boolean | null]
   >("app.navigate") || [initialRoute, "", true];
@@ -114,4 +115,15 @@ export default function Router({ route: initialRoute = "/" }: RouterProps) {
   useTitleEffect(title, eventRoute.split("#")[0], hash, preventPushState);
 
   return <Page />;
+}
+
+export function Router({ route: initialRoute = "/" }: RouterProps) {
+  const pages = usePages();
+  return (
+    <Switch>
+      {Object.entries(pages).map(([routePath, [title, Page]]) => (
+        <Route path={routePath==="index" ? "/" : "/" + routePath} component={Page} key={routePath} />
+      ))}
+    </Switch>
+  );
 }

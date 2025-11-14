@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { useDispatch, useListener } from "@sensitive-dogs/event-bus";
+import { useLocation } from "wouter";
 import NavBar from "./components/nav-bar";
 import NavDrawer from "./components/nav-drawer";
 
@@ -18,7 +18,7 @@ const DEFAULT_MENU_CONTEXT = {
 
 function createActions(
   dispatch: React.Dispatch<{ type: ACTIONS; value?: string }> | null,
-  navigate: null | ((path: [string, string]) => void)
+  navigate: null | ((path: string) => void)
 ) {
   const actions = {
     openDrawer: () => {
@@ -27,9 +27,9 @@ function createActions(
     closeDrawer: () => {
       dispatch && dispatch({ type: ACTIONS.CLOSE_DRAWER });
     },
-    navigate: (path: string, title: string) => {
+    navigate: (path: string) => {
       if (navigate) {
-        navigate([path, title]);
+        navigate(path);
       }
       actions.closeDrawer();
     }
@@ -62,16 +62,17 @@ export default function Navigation({ route }: { route: string | undefined }) {
     ...DEFAULT_MENU_CONTEXT,
     route: route || DEFAULT_MENU_CONTEXT.route
   });
-  const navigateFn = useDispatch<[string, string]>("app.navigate");
-  const [eventRoute] = useListener<[string]>("app.navigate") || [undefined];
+  // const navigateFn = useDispatch<[string, string]>("app.navigate");
+  // const [eventRoute] = useListener<[string]>("app.navigate") || [undefined];
+  const [location, navigate] = useLocation();
 
-  React.useEffect(() => {
-    if (eventRoute === undefined) return;
+  // React.useEffect(() => {
+  //   if (eventRoute === undefined) return;
 
-    dispatch({ type: ACTIONS.CHANGE_ROUTE, value: eventRoute });
-  }, [eventRoute]);
+  //   dispatch({ type: ACTIONS.CHANGE_ROUTE, value: eventRoute });
+  // }, [eventRoute]);
 
-  const actions = createActions(dispatch, navigateFn);
+  const actions = createActions(dispatch, navigate);
   return (
     <MenuContext.Provider value={[state, actions]}>
       <NavBar />

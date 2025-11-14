@@ -67,7 +67,7 @@ async function build() {
   let config;
   try {
     config = await getWebpackConfiguration(true);
-  } catch(e) {
+  } catch (e) {
     console.error("Error setting up webpack:", e);
     return;
   }
@@ -104,7 +104,7 @@ const runServer = async (shouldHydrate: boolean) => {
   let config;
   try {
     config = await getWebpackConfiguration(shouldHydrate);
-  } catch(e) {
+  } catch (e) {
     console.error("Error setting up webpack:", e);
     return;
   }

@@ -98,7 +98,7 @@ export default function NavBar() {
               onClick={(event) => {
                 if (type === "link") {
                   event.preventDefault();
-                  actions.navigate(url, text);
+                  actions.navigate(url);
                 }
               }}
             >
