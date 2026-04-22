@@ -25,12 +25,13 @@ export function useFilteredResults() {
   );
 
   const results = lodash(data.professionals)
-    .filter(
-      ({ cities, remote }) =>
-        activeLocation === null ||
-        cities.includes(activeLocation) ||
-        (isRemote === true && remote === true)
-    )
+    .filter(({ cities, remote }) => {
+      if (activeLocation === null) {
+        return isRemote ? remote : true;
+      } else {
+        return cities.includes(activeLocation) || (isRemote && remote);
+      }
+    })
     .filter(
       ({ services }) =>
         activeServices === null ||
