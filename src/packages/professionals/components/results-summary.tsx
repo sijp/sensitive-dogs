@@ -64,8 +64,11 @@ export function ResultsSummary() {
               />
             ))}
           </>
-        ) : (<>
-            <NonMinifiedText text=" עבור כל סוגי השירות" /></>)}
+        ) : (
+          <>
+            <NonMinifiedText text=" עבור כל סוגי השירות" />
+          </>
+        )}
         {activeLocation ? (
           <>
             <br />
@@ -93,7 +96,7 @@ export function ResultsSummary() {
         )}
         {isRemote ? (
           <>
-            <NonMinifiedText text=" כולל" />
+            {activeLocation ? <NonMinifiedText text=" כולל" /> : null}
             <Chip
               label={"שירות אונליין"}
               size="small"
@@ -111,6 +114,7 @@ export function ResultsSummary() {
                 setIsRemote(false);
               }}
             />
+            {!activeLocation ? <NonMinifiedText text=" בלבד" /> : null}
           </>
         ) : null}
       </Typography>
