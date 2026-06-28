@@ -3,8 +3,8 @@ import lodash from "lodash";
 
 import { DataContext } from "@sensitive-dogs/app/App";
 
-import { useLocation } from "../hooks/use-location";
-import { useServices } from "../hooks/use-services";
+import { useLocation } from "./use-location";
+import { useServices } from "./use-services";
 import { useRemoteLocation } from "./use-remote-location";
 
 export function useFilteredResults() {
