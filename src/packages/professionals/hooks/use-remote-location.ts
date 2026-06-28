@@ -1,10 +1,7 @@
-import { useQueryString } from "./use-query-string";
+import { useIncludeRemote, useSetIncludeRemote } from "../store";
 
 export function useRemoteLocation() {
-  const [query, setQuery] = useQueryString();
-
-  const setRemoteLocation = (isRemote: boolean) => {
-    setQuery({ includeRemote: isRemote });
-  };
-  return [query.includeRemote, setRemoteLocation] as const;
+  const include = useIncludeRemote();
+  const setInclude = useSetIncludeRemote();
+  return [include, setInclude] as const;
 }
