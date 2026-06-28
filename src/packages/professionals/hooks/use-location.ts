@@ -1,14 +1,14 @@
-import { useQueryString } from "./use-query-string";
+import { useLocation as useLocationSelector, useSetLocationValidated } from "../store";
 import { locations } from "../config";
 
 export function useLocation() {
-  const [query, setQuery] = useQueryString();
+  const location = useLocationSelector();
+  const setLocationValidated = useSetLocationValidated();
 
-  const setLocation = (id: string) => {
-    const theLocation = locations[id] || "";
-    if (!theLocation && id !== "") return;
-
-    setQuery({ location: id });
+  const set = (id: string) => {
+    // delegate validation to store; setLocationValidated ignores invalid ids
+    setLocationValidated(id);
   };
-  return [query.location, setLocation] as const;
+
+  return [location, set] as const;
 }
